@@ -21,23 +21,25 @@ SET time_zone = "+00:00";
 -- Database: `homebasedb`
 --
 
+-- ---------------------------------------------------
+
 --
 -- Table structure for table `dbPersons`
 --
 
 CREATE TABLE `dbPersons` (
-  `id` text NOT NULL,
+  `id` varchar(255) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text,
   `phone` varchar(12) NOT NULL,
   `email` text,
-  `password` text
-  primary key(id)
-  
+  `password` text,
+  primary key(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dbPersons`
 --
 
---INSERT INTO `dbPersons` (`id`, `start_date`, `venue`, `first_name`, `last_name`, `address`, `city`, `state`, `zip`, `phone1`, `phone1type`, `phone2`, `phone2type`, `birthday`, `email`, `employer`, `position`, `credithours`, `howdidyouhear`, `commitment`, `motivation`, `specialties`, `convictions`, `type`, `screening_type`, `screening_status`, `status`, `availability`, `schedule`, `hours`, `notes`, `password`) VALUES
+INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `password`) VALUES
+('admin01', 'Ethan', 'Lambert', '5407355011', 'lambertew@yahoo.com', 'seth2000');
