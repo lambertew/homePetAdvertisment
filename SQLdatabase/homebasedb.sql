@@ -25,6 +25,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `dbPersons`
 --
 
+-- dbPersons is the admin database
 CREATE TABLE `dbPersons` (
   `id` text NOT NULL,
   `first_name` text NOT NULL,
@@ -35,6 +36,25 @@ CREATE TABLE `dbPersons` (
   primary key(id)
   
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `dbAdopter` (
+  `id` int NOT NULL,
+  `name` text NOT NULL,
+  `phone number` varchar(12) NOT NULL
+  `email` text
+);
+
+CREATE TABLE `dbPetPost` (
+  `id` int NOT NULL,
+  `owner_id` int NOT NULL, 
+  `petName` text NOT NULL,
+  `petType` text NOT NULL,
+  `petStory` text NOT NULL,
+  `petPicture`
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
+);
+
 
 --
 -- Dumping data for table `dbPersons`
