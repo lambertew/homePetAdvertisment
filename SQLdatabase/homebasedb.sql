@@ -40,7 +40,7 @@ CREATE TABLE `dbPersons` (
 CREATE TABLE `dbAdopter` (
   `id` int NOT NULL,
   `name` text NOT NULL,
-  `phone number` varchar(12) NOT NULL
+  `phone` varchar(12) NOT NULL
   `email` text
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE `dbPetPost` (
   `petName` text NOT NULL,
   `petType` text NOT NULL,
   `petStory` text NOT NULL,
-  `petPicture`
+  `petPicture` BLOB, 
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
 );
@@ -61,3 +61,10 @@ CREATE TABLE `dbPetPost` (
 --
 
 --INSERT INTO `dbPersons` (`id`, `start_date`, `venue`, `first_name`, `last_name`, `address`, `city`, `state`, `zip`, `phone1`, `phone1type`, `phone2`, `phone2type`, `birthday`, `email`, `employer`, `position`, `credithours`, `howdidyouhear`, `commitment`, `motivation`, `specialties`, `convictions`, `type`, `screening_type`, `screening_status`, `status`, `availability`, `schedule`, `hours`, `notes`, `password`) VALUES
+INSERT INTO `dbPersons` (`first_name`, `last_name`, `phone`, `email`, `password`) VALUES
+('Bob', 'Robertson', '8888888888', 'wackpassword@fake.com', 'bogus_pass');
+
+INSERT INTO `dbAdopter` (`name`, `phone`, `email`) VALUES
+('Adopter Adopterson', '1234567890', "adopterson@fake.com");
+
+INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
