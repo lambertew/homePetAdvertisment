@@ -21,20 +21,21 @@ SET time_zone = "+00:00";
 -- Database: `homebasedb`
 --
 
+-- ---------------------------------------------------
+
 --
 -- Table structure for table `dbPersons`
 --
 
 -- dbPersons is the admin database
 CREATE TABLE `dbPersons` (
-  `id` text NOT NULL,
+  `id` varchar(255) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text,
   `phone` varchar(12) NOT NULL,
   `email` text,
-  `password` text
-  primary key(id)
-  
+  `password` text,
+  primary key(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `dbAdopter` (
@@ -70,3 +71,6 @@ INSERT INTO `dbAdopter` (`name`, `phone`, `email`) VALUES
 ('Adopter Adopterson', '1234567890', "adopterson@fake.com");
 
 INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
+=======
+INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `password`) VALUES
+('admin01', 'Ethan', 'Lambert', '5407355011', 'lambertew@yahoo.com', 'seth2000');
