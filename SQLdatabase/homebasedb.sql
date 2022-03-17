@@ -73,6 +73,3 @@ INSERT INTO `dbAdopter` (`name`, `phone`, `email`) VALUES
 ('Adopter Adopterson', '1234567890', "adopterson@fake.com");
 
 -- INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
-
-INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `password`) VALUES
-('admin01', 'Ethan', 'Lambert', '5407355011', 'lambertew@yahoo.com', 'seth2000');
