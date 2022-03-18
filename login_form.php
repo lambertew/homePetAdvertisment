@@ -16,7 +16,7 @@
 ?>
 
 <div id="content">
-  <?PHP
+    <?PHP
     include_once('database/dbPersons.php');
     include_once('domain/Person.php');
     if (($_SERVER['PHP_SELF']) == "/logout.php") {
@@ -42,8 +42,6 @@
         if ($_POST['user'] == "guest" && $_POST['pass'] == "") {
             $_SESSION['logged_in'] = 1;
             $_SESSION['access_level'] = 0;
-            $_SESSION['venue'] = "";
-            $_SESSION['type'] = "";
             $_SESSION['_id'] = "guest";
             echo "<script type=\"text/javascript\">window.location = \"index.php\";</script>";
         }
@@ -56,20 +54,23 @@
                 if ($person->get_password() == $db_pass) { //if the passwords match, login
                     $_SESSION['logged_in'] = 1;
                     date_default_timezone_set ("America/New_York");
-                    if ($person->get_status() == "applicant")
-                        $_SESSION['access_level'] = 0;
-                    else if (in_array('manager', $person->get_type()))
-                        $_SESSION['access_level'] = 2;
-                    else
-                        $_SESSION['access_level'] = 1;
+                    // if ($person->get_status() == "applicant")
+                    //     $_SESSION['access_level'] = 0;
+                    // else if (in_array('manager', $person->get_type()))
+                    //     $_SESSION['access_level'] = 2;
+                    // else
+                    $_SESSION['access_level'] = 2;
                     $_SESSION['f_name'] = $person->get_first_name();
                     $_SESSION['l_name'] = $person->get_last_name();
-                    $_SESSION['venue'] = $person->get_venue();
-                    $_SESSION['type'] = $person->get_type();
+                    // $_SESSION['venue'] = $person->get_venue();
+                    // $_SESSION['type'] = $person->get_type();
                     $_SESSION['_id'] = $_POST['user'];
                     echo "<script type=\"text/javascript\">window.location = \"index.php\";</script>";
                 }
                 else {
+                    echo $person->get_password();
+                    echo 'split';
+                    echo $db_pass;
                     echo('<div align="left"><p class="error">Error: invalid username/password<br />if you cannot remember your password, ask either the 
         		<a href="mailto:allen@npfi.org"><i>Portland House Manager</i></a>
         		or the <a href="mailto:allen@npfi.org"><i>Bangor House Manager</i></a>. to reset it for you.</p><p>Access to Homebase requires a Username and a Password. <p>For guest access, enter Username <strong>guest</strong> and no Password.</p>');
@@ -95,9 +96,8 @@
         }
     }
     ?>
-  <?PHP include('footer.inc'); ?>
+    <?PHP include('footer.inc'); ?>
 </div>
 </div>
 </body>
-
 </html>
