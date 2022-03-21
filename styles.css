@@ -4,10 +4,11 @@
 /* GENERAL STYLES */
 body{
     /* background:#001460; */
-    background:#FFFFDD;
+    /*background:#FFFFDD;*/
+    background-color: #659DBD;
     font-family:verdana, arial, sans-serif;
     font-size:12px;
-    color: 	#000000;
+    color: 	#123242;
 }
 
 p {padding-left: 15px; padding-right:15px;}
