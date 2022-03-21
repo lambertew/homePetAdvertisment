@@ -78,7 +78,7 @@
         	echo " <br><b>"."SPCA"."</b> ";
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">home</a>');
-	            echo(' | <a href="' . $path . 'about.php">about</a>');
+	            echo(' | <a href="' . $path . 'emailAuth.php">Email Authentication</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
 	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
 	            echo(' | <a href="' . $path . 'login_form.php">login</a>');
