@@ -44,20 +44,21 @@ CREATE TABLE `dbAdopter` (
   `id` int NOT NULL,
   `name` text NOT NULL,
   `phone` varchar(12) NOT NULL,
-  `email` text NOT NULL
+  `email` text NOT NULL,
+  PRIMARY KEY (`id`)
 );
 
--- DROP TABLE IF EXISTS `dbPetPost`;
--- CREATE TABLE `dbPetPost` (
---   `id` int NOT NULL,
---   `owner_id` int NOT NULL, 
---   `petName` text NOT NULL,
---   `petType` text NOT NULL,
---   `petStory` text NOT NULL,
---   `petPicture` BLOB, 
---   PRIMARY KEY (`id`)
---   FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
--- );
+DROP TABLE IF EXISTS `dbPetPost`;
+CREATE TABLE `dbPetPost` (
+  `id` int NOT NULL,
+  `owner_id` int NOT NULL, 
+  `petName` text NOT NULL,
+  `petType` text NOT NULL,
+  `petStory` text NOT NULL,
+  `petPicture` BLOB, 
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
+) Engine = InnoDB;
 
 
 --
