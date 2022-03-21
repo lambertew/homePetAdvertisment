@@ -15,7 +15,10 @@
  */
  session_start();
 ?>
-
+<head>
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+<div id="container">
 <div id="content">
     <?PHP
     include_once('database/dbPersons.php');
@@ -23,6 +26,10 @@
     if (($_SERVER['PHP_SELF']) == "/logout.php") {
         //prevents infinite loop of logging in to the page which logs you out...
         echo "<script type=\"text/javascript\">window.location = \"index.php\";</script>";
+    }
+    if(!$_SESSION['logged_in']) {
+        $_SESSION['logged_in'] = 0;
+        $_SESSION['access_level'] = 0;
     }
     if (!array_key_exists('_submit_check', $_POST)) {
         echo('<div align="left"><p>Access to Homebase requires a Username and a Password. ' .
@@ -97,5 +104,3 @@
     <?PHP include('footer.inc'); ?>
 </div>
 </div>
-</body>
-</html>
