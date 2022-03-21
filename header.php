@@ -74,7 +74,7 @@
         // 	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         // }
         // else {
-        	echo " <br><b>"."Homebase"."</b> ";
+        	echo " <br><b>"."SPCA"."</b> ";
 	        if ($_SESSION['access_level'] >= 1) {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');

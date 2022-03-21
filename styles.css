@@ -47,7 +47,7 @@ table#spacedRowTable td{
 
 /* LINK STYLES */
 A			{ color: #001460; text-decoration: none; img-decoration: none; }
-A:link		{ color: #018AFEE; text-decoration: none; img-decoration: none; }
+A:link		{ color: #018AFE; text-decoration: none; img-decoration: none; }
 A:visited	{ color: #001460; text-decoration: none; img-decoration: none; }
 A:active	{ color: #BE0000;  }
 A:hover		{ color: #BE0000;  }
