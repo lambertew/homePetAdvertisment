@@ -17,7 +17,7 @@ class PetPost {
     private $id;   // id (unique key) = pet_name . phone
     private $name;  // name as a string
     private $email;  // email address as a string
-    private $phone:  // phone number as a string
+    private $phone;  // phone number as a string
     private $pet_name;     // pet name as a string
     private $pet_type;      // pet type -- dog, cat, or other
     private $pet_story;  // short story as a string
