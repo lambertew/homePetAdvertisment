@@ -31,9 +31,9 @@ session_cache_expire(30);
                 include_once('domain/Shift.php');
                 include_once('database/dbShifts.php');
                 date_default_timezone_set('America/New_York');
-                echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+             //   echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
             //    fix_all_birthdays();
-                if ($_SESSION['_id'] != "guest") {
+                if ($_SESSION['access_level'] == 2) {
                     $person = retrieve_person($_SESSION['_id']);
                     echo "<p>Welcome, " . $person->get_first_name() . ", to Homebase!";
                 }
@@ -45,9 +45,9 @@ session_cache_expire(30);
                 <!-- your main page data goes here. This is the place to enter content -->
                 <p>
                     <?PHP
-                    if ($_SESSION['access_level'] == 0)
-                        echo('<p> To apply for volunteering at the Portland or Bangor Ronald McDonald House, '.
-                        		'please select <b>apply</b>.');
+                    //if ($_SESSION['access_level'] == 0)
+                     //   echo('<p> To apply for volunteering at the Portland or Bangor Ronald McDonald House, '.
+                     //   		'please select <b>apply</b>.');
                     if ($person) {
                         /*
                          * Check type of person, and display home page based on that.
@@ -59,10 +59,10 @@ session_cache_expire(30);
                          */
 
                         //APPLICANT CHECK
-                        if ($person->get_first_name() != 'guest') {
+                        //if ($person->get_first_name() != 'guest') {
                             //SHOW STATUS
-                            echo('<div class="infobox"><p><strong>Your application has been submitted.</strong><br><br /><table><tr><td><strong>Step</strong></td><td><strong>Completed?</strong></td></tr><tr><td>Background Check</td><td>' . $person['background_check'] . '</td></tr><tr><td>Interview</td><td>' . $person['interview'] . '</td></tr><tr><td>Shadow</td><td>' . $person['shadow'] . '</td></tr></table></p></div>');
-                        }
+                        //    echo('<div class="infobox"><p><strong>Your application has been submitted.</strong><br><br /><table><tr><td><strong>Step</strong></td><td><strong>Completed?</strong></td></tr><tr><td>Background Check</td><td>' . $person['background_check'] . '</td></tr><tr><td>Interview</td><td>' . $person['interview'] . '</td></tr><tr><td>Shadow</td><td>' . $person['shadow'] . '</td></tr></table></p></div>');
+                        //}
 
                         //VOLUNTEER CHECK
                         // if ($_SESSION['access_level'] == 1) {
@@ -118,7 +118,7 @@ session_cache_expire(30);
                             //We have a manager authenticated
                             
                         	//active applicants box
-                        	$con=connect();
+                        	/**$con=connect();
                         	$app_query = "SELECT first_name,last_name,id, FROM dbPersons ORDER BY start_date desc";
                         	$applicants_tab = mysqli_query($con,$app_query);
                         	$numLines = 0;
@@ -142,6 +142,7 @@ session_cache_expire(30);
                                 '<td class="searchResults">' . $lo[2] . '</td></tr>');
                             }
                             echo ('</table><br><a href="' . $path . 'log.php">View full log</a></p></div><br>');
+                            */
                         }
                         //DEFAULT PASSWORD CHECK
                         if (md5($person->get_id()) == $person->get_password()) {

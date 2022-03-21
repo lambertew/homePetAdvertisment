@@ -41,9 +41,9 @@ session_cache_expire(30);
                 $_SESSION['logged_in'] = 0;
                 $_SESSION['access_level'] = 0;
                 ?>
-                <p>You are now logged out of Homebase.</p>
-                <?PHP include('footer.inc'); ?>
+                <p>You are now logged out of SPCA.</p>
             </div>
+            <?PHP include('footer.inc'); ?>
         </div>
     </body>
 </html>
