@@ -41,7 +41,7 @@
         $permission_array['index.php'] = 0;
         $permission_array['about.php'] = 0;
         $permission_array['apply.php'] = 0;
-        $permission_array['petpostform.php'] = 2;
+        $permission_array['petpostform.php'] = 0;
         //pages volunteers can view
         $permission_array['help.php'] = 1;
         $permission_array['calendar.php'] = 1;
@@ -80,7 +80,7 @@
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
-                echo(' | <a href="' . $path . 'petPostForm.php?id=' . 'new' . '">Create Pet Post</a>');
+                echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
 	            echo(' <a href="' . $path . 'calendar.php?venue=bangor'.''.'">Bangor</a>');
 	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=portland'."".'">Portland, </a>');

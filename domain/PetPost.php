@@ -27,8 +27,8 @@ class PetPost {
      * makes a pet post object.  from either the db or from the generating form in edit shifts
      */
 
-    function __construct($id, $n, $e, $p, $pn, $pt, $ps, $pp) {
-        $this->id = $id;
+    function __construct($n, $e, $p, $pn, $pt, $ps, $pp) {
+        $this->id = $n . $p;
         $this->name = $n;
         $this->email = $e;
         $this->phone = $p;

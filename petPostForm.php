@@ -13,7 +13,7 @@
  */
 session_start();
 session_cache_expire(30);
-include_once('database/dbPersons.php');
+//include_once('database/dbPersons.php');
 include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
 //include_once('domain/Person.php');
@@ -38,7 +38,7 @@ if ($id == 'new') {
             die();
         }
     }*/
-//}
+}
 ?>
 <html>
     <head>
@@ -56,7 +56,7 @@ if ($id == 'new') {
             <div id="content">
                 <?PHP
                 include('personValidate.inc');
-                if ($_POST['_form_submit'] != 1)
+                /*if ($_POST['_form_submit'] != 1) {
                 //in this case, the form has not been submitted, so show it
                     include('petPostForm.inc');
                 else {
@@ -74,12 +74,18 @@ if ($id == 'new') {
                     }
                     // this was a successful form submission; update the database and exit
                     else
-                        process_form($id,$person);
+                        process_form($id,$petPost);
                         echo "</div>";
                     include('footer.inc');
                     echo('</div></body></html>');
                     die();
-                }
+                }*/
+                include('petPostForm.inc');
+                process_form($id,$petPost);
+                        echo "</div>";
+                    include('footer.inc');
+                    echo('</div></body></html>');
+                    die();
 
                 /**
                  * process_form sanitizes data, concatenates needed data, and enters it all into a database
