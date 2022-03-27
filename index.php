@@ -39,11 +39,30 @@ session_cache_expire(30);
                 else 
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
+                echo "Paul is a big nerd";
+                $img = ('images/emma.jpg');
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
                 <p>
                     <?PHP
+                    echo '
+                    <fieldset width="700">
+                    <legend>Jacob Forehead behavior</legend>
+                      <table width="700" height = "auto">
+                      <tr>
+                        <td>
+                          <img src="images/emma.jpg" width="auto"; height = "500"; margin = "auto"; />
+                        </td>
+                        <td><p>This is emma, she turns 2 in may, she is a heffa and secretly a horse. She do be squeakin though</p></td>
+                      </tr>
+                      <tr>
+                        <td>Emma with her favorite squeaky toy</td>
+                      </tr>
+                        ';
+
+
+                    // This is the pre-existing homebase code, use as a reference but disregard for now
                     if ($_SESSION['access_level'] == 0)
                         echo('<p> To apply for volunteering at the Portland or Bangor Ronald McDonald House, '.
                         		'please select <b>apply</b>.');
@@ -62,56 +81,6 @@ session_cache_expire(30);
                             //SHOW STATUS
                             echo('<div class="infobox"><p><strong>Your application has been submitted.</strong><br><br /><table><tr><td><strong>Step</strong></td><td><strong>Completed?</strong></td></tr><tr><td>Background Check</td><td>' . $person['background_check'] . '</td></tr><tr><td>Interview</td><td>' . $person['interview'] . '</td></tr><tr><td>Shadow</td><td>' . $person['shadow'] . '</td></tr></table></p></div>');
                         }
-
-                        //VOLUNTEER CHECK
-                        // if ($_SESSION['access_level'] == 1) {
-                        	
-                        // 	// display upcoming schedule
-                        //     $shifts = selectScheduled_dbShifts($person->get_id());
-
-                        //     $scheduled_shifts = array();
-                        //     foreach ($shifts as $shift) {
-                        //         $shift_month = get_shift_month($shift);
-                        //         $shift_day = get_shift_day($shift);
-                        //         $shift_year = get_shift_year($shift);
-
-                        //         $shift_time_s = get_shift_start($shift);
-                        //         $shift_time_e = get_shift_end($shift);
-
-                        //         $cur_month = date("m");
-                        //         $cur_day = date("d");
-                        //         $cur_year = date("y");
-
-                        //         if ($shift_year > $cur_year)
-                        //             $upcoming_shifts[] = $shift;
-                        //         else if ($shift_year == $cur_year) {
-                        //             if ($cur_month < $shift_month)
-                        //                 $upcoming_shifts[] = $shift;
-                        //             else if ($shift_month == $cur_month) {
-                        //                 if ($cur_day <= $shift_day) {
-                        //                     $upcoming_shifts[] = $shift;
-                        //                 }
-                        //             }
-                        //         }
-                        //     }
-                        //     if ($upcoming_shifts) {
-                        //         echo('<div class="scheduleBox"><p><strong>Your Upcoming Schedule:</strong><br /></p><ul>');
-                        //         foreach ($upcoming_shifts as $tableId) {
-                        //             echo('<li type="circle">' . get_shift_name_from_id($tableId)) . '</li>';
-                        //         }
-                        //         echo('</ul><p>If you need to cancel an upcoming shift, please contact the <a href="mailto:allen@npfi.org">House Manager</a>.</p></div>');
-                        //     }
-                            
-                        //     // link to personal profile for editing
-                        //     echo('<br><div class="scheduleBox"><p><strong>Your Personal Profile:</strong><br /></p><ul>');  
-                        //         echo('</ul><p>Go <strong><a href="personEdit.php?id='.$person->get_id()
-                        // 	   .'">here</a></strong> to view or update your contact information.</p></div>');
-                        //     // link to personal log sheet
-                        //     echo('<br><div class="scheduleBox"><p><strong>Your Log Sheet:</strong><br /></p><ul>');
-                        //         echo('</ul><p>Go <strong><a href="volunteerLog.php?id='.$person->get_id()
-                        // 	   .'">here</a></strong> to view or enter your recent volunteering hours.</p></div>');
-              
-                        // }
                         
                         if ($_SESSION['access_level'] == 2) {
                             //We have a manager authenticated
