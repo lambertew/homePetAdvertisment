@@ -42,28 +42,41 @@ include_once('domain/Person.php');
                 include('personValidate.inc');
                 if ($_POST['_form_submit'] != 1)
                 //in this case, the form has not been submitted, so show it
-                    include('emailAuthForm.inc');
+                    include('resetAuthForm.inc');
                 else if (($_POST['_form_submit'] == 1) && ($_POST['_form_submit_2'] != 1))
                 {
+                    $con=connect();
+                    $query = "SELECT * FROM dbpersons WHERE email = '" . $_POST['resetEmail'] . "' AND id = '" . $_POST['resetID'] . "'";
+                    //$query = "SELECT * FROM dbpersons WHERE email='weisbeckjacob@gmail.com' AND id='Jacob5404985629'" ;
+                    $result = mysqli_query($con,$query);
+                    mysqli_close($con);
                     //in this case, the form has been submitted, so validate it
-                    $errors = valid_email($_POST['email']);  //step one is validation.
+                    $errors = valid_email($_POST['resetEmail']);  //step one is validation.
                     // errors array lists problems on the form submitted
-                    if (!$errors) {
+                    if (!$errors || !$result) {
                         // display the errors and the form to fix
                         echo('<div class="warning">');
                         echo('<ul>');
-                        echo("<li><strong><font color=\"red\">Malformed Email!</font></strong></li>\n");
-                        echo("</ul></div></p>");
-                        // $person = new Person($person->get_first_name(), $_POST['last_name'], $person->get_phone(), 
-                        // 		        $_POST['email'], 
-                        //                 $_POST['old_pass']);
-                        include('emailAuthForm.inc');
+                        if (!$errors)
+                        {
+                            echo("<li><strong><font color=\"red\">Malformed Email!</font></strong></li>\n");
+                            echo("</ul></div></p>");
+                        }
+                        else if (!$result)
+                        {
+                            echo("<li><strong><font color=\"red\">" . $result . "</font></strong></li>\n");
+                            echo("</ul></div></p>");
+                        }
+                        include('resetAuthForm.inc');
+                        //echo("</ul></div></p>");
                     }
                     // this was a successful form submission; update the database and exit
                     else
-                        send_email($_POST['email']);
+                    {
+                        send_email($_POST['resetEmail']);
                         //echo "</div>";
                         include("verificationCodeForm.inc");
+                    }
                     include('footer.inc');
                     echo('</div></body></html>');
                     die();
@@ -81,7 +94,7 @@ include_once('domain/Person.php');
                     }
                     else
                     {
-                        echo "<script type=\"text/javascript\">window.location = \"petPostForm.php\";</script>";
+                        echo "<script type=\"text/javascript\">window.location = \"resetPassword.php\";</script>";
                     }
                     include('footer.inc');
                     echo('</div></body></html>');

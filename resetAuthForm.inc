@@ -11,8 +11,10 @@ echo('Testting Email Authentication. ' .
         <?php
         
         echo '<p>Sending Email Using PHP';
+        echo '<p>ID<span style="font-size:x-small;color:FF0000">*</span>: ';
+        echo '<input type="text" name="resetID">';
         echo '<p>Email<span style="font-size:x-small;color:FF0000">*</span>: ';
-        echo '<input type="text" name="email">';
+        echo '<input type="text" name="resetEmail">';
         ?>
         <script src="lib/jquery-1.9.1.js"></script>
         <script src="lib/jquery-ui.js"></script>
