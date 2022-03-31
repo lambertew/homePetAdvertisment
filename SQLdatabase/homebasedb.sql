@@ -55,7 +55,8 @@ CREATE TABLE `dbPetPost` (
   `petName` text NOT NULL,
   `petType` text NOT NULL,
   `petStory` text NOT NULL,
-  `petPicture` BLOB, 
+  `petPicture` text NOT NULL,
+  -- storing petPicture as a text ref for now while we spoof data 
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
 ) Engine = InnoDB;
@@ -73,4 +74,5 @@ INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `pas
 INSERT INTO `dbAdopter` (`name`, `phone`, `email`) VALUES
 ('Adopter Adopterson', '1234567890', "adopterson@fake.com");
 
--- INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
+INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
+('1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg');
