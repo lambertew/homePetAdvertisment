@@ -39,24 +39,25 @@ session_cache_expire(30);
                 else 
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
-                echo "Paul is a big nerd";
                 $img = ('images/emma.jpg');
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
                 <p>
-                    <?PHP
-                    echo '
-                    <fieldset width="700">
+                <fieldset>
                     <legend>Featured Pet</legend>
-                      <table width="700" height = "auto">
+                      <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
                       <tr>
-                        <td>
+                        <td rel="stylesheet" href="styles.css">
                           <img src="images/emma.jpg" width="auto"; height = "500"; margin = "auto"; />
                         </td>
-                        <td><p>This is emma, she turns 2 in may, she is a heffa. She do be squeakin though</p></td>
+                        <td class="td">This is emma, she turns 2 in may, she is a heffa. She do be squeakin though</td>
                       </tr>
-                        ';
+              </legend>
+              </fieldset>
+
+
+                    <?PHP
 
 
                     // This is the pre-existing homebase code, use as a reference but disregard for now

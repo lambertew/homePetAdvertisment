@@ -17,13 +17,18 @@ h3 {padding-left: 20px}
 
 /* TABLE STYLES */
 table { border-collapse:collapse; font-family:verdana, arial, sans-serif;}
-td {border: none; font-size:12px; padding:3px; }
+td {border: none; font-size:16px; padding:3px; }
 
 table.searchResults{ border-collapse:collapse;vertical-align:middle; font-family:verdana, arial, sans-serif; padding-left:15px;}
 td.searchResults {border: none; font-size:12px; padding-top:3px; padding-bottom:3px; padding-left:6px; padding-right:6px;}
 
 table.warningTable{border-collapse:collapse; font-family:verdana, arial, sans-serif; padding-left:0px;}
 td.warningTable{border: none; font-size:12px; padding-top:3px; padding-bottom:3px; padding-left:6px; padding-right:6px;}
+
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
 
 table#areport{
 	border-collapse:collapse;
