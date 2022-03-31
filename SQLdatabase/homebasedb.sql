@@ -28,7 +28,10 @@ SET time_zone = "+00:00";
 --
 
 -- dbPersons is the admin database
+DROP TABLE IF EXISTS `dbPetPost`;
+DROP TABLE IF EXISTS `dbAdopter`;
 DROP TABLE IF EXISTS `dbPersons`;
+
 CREATE TABLE `dbPersons` (
   `id` varchar(255) NOT NULL,
   `first_name` text NOT NULL,
@@ -39,7 +42,6 @@ CREATE TABLE `dbPersons` (
   primary key(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-DROP TABLE IF EXISTS `dbAdopter`;
 CREATE TABLE `dbAdopter` (
   `id` int NOT NULL,
   `name` text NOT NULL,
@@ -48,7 +50,6 @@ CREATE TABLE `dbAdopter` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `dbPetPost`;
 CREATE TABLE `dbPetPost` (
   `id` int NOT NULL,
   `owner_id` int NOT NULL, 
@@ -56,8 +57,7 @@ CREATE TABLE `dbPetPost` (
   `petType` text NOT NULL,
   `petStory` text NOT NULL,
   `petPicture` text NOT NULL,
-  'approved' boolean NOT NULL,
-  -- storing petPicture as a text ref for now while we spoof data 
+  `approved` int NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
 ) Engine = InnoDB;
@@ -72,10 +72,10 @@ INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `pas
 ('Ethan5407355011', 'Ethan', 'Lambert', '5407355011', 'lambertew@yahoo.com', '5409d8ac4d6e3eddc773e841a3182562'),
 ('Admin7037806282', 'Admin', 'Jones', '7037806282', 'admin@yahoo.com', 'be6bef2c7a57bead38826deed4077d03');
 
-INSERT INTO `dbAdopter` (`name`, `phone`, `email`) VALUES
-('Adopter Adopterson', '1234567890', "adopterson@fake.com");
-('Paul Narkinsky', '55555555555', 'jnarkins@umw.edu');
+INSERT INTO `dbAdopter` (`id`,`name`, `phone`, `email`) VALUES
+('0','Adopter Adopterson', '1234567890', "adopterson@fake.com"),
+('1', 'Paul Narkinsky', '55555555555', 'jnarkins@umw.edu');
 
-INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
-('2', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 1),
-('1', 'Bagel', 'Cat', 'Nova scotian badass', 'images/bagel.jpg', 0);
+INSERT INTO `dbPetPOST` (`id`,`owner_id`, `petName`, `petType`, `petStory`, `petPicture`, `approved`) VALUES
+('0', '1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 1),
+('1', '0', 'Bagel', 'Cat', 'Nova scotian badass', 'images/bagel.jpg', 0);
