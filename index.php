@@ -48,16 +48,13 @@ session_cache_expire(30);
                     <?PHP
                     echo '
                     <fieldset width="700">
-                    <legend>Jacob Forehead behavior</legend>
+                    <legend>Featured Pet</legend>
                       <table width="700" height = "auto">
                       <tr>
                         <td>
                           <img src="images/emma.jpg" width="auto"; height = "500"; margin = "auto"; />
                         </td>
-                        <td><p>This is emma, she turns 2 in may, she is a heffa and secretly a horse. She do be squeakin though</p></td>
-                      </tr>
-                      <tr>
-                        <td>Emma with her favorite squeaky toy</td>
+                        <td><p>This is emma, she turns 2 in may, she is a heffa. She do be squeakin though</p></td>
                       </tr>
                         ';
 
