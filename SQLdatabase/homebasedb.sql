@@ -56,6 +56,7 @@ CREATE TABLE `dbPetPost` (
   `petType` text NOT NULL,
   `petStory` text NOT NULL,
   `petPicture` text NOT NULL,
+  'approved' boolean NOT NULL,
   -- storing petPicture as a text ref for now while we spoof data 
   PRIMARY KEY (`id`),
   FOREIGN KEY (`owner_id`) REFERENCES `dbAdopter`(`id`)
@@ -73,6 +74,8 @@ INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `pas
 
 INSERT INTO `dbAdopter` (`name`, `phone`, `email`) VALUES
 ('Adopter Adopterson', '1234567890', "adopterson@fake.com");
+('Paul Narkinsky', '55555555555', 'jnarkins@umw.edu');
 
 INSERT INTO `dbPetPOST` (`owner_id`, `petName`, `petType`, `petStory` `petPicture`) VALUES
-('1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg');
+('2', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 1),
+('1', 'Bagel', 'Cat', 'Nova scotian badass', 'images/bagel.jpg', 0);
