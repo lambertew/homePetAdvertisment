@@ -51,7 +51,21 @@ session_cache_expire(30);
                         <td rel="stylesheet" href="styles.css">
                           <img src="images/emma.jpg" width="auto"; height = "500"; margin = "auto"; />
                         </td>
-                        <td class="td">This is emma, she turns 2 in may, she is a heffa. She do be squeakin though</td>
+                        <td class="td">
+                          <table>
+                            <tr>
+                              <td>
+                              Actual best dog
+                            </td>
+                          </tr>
+                            <tr>
+                              <td>
+                              This is emma, she turns 2 in may, she is a heffa. Also
+                              frick bagel
+                            </td>
+                          </tr>
+                          </table>
+                        </td>
                       </tr>
               </legend>
               </fieldset>
