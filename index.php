@@ -39,36 +39,10 @@ session_cache_expire(30);
                 else 
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
-                $img = ('images/emma.jpg');
+                include_once('petPost.php');
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
-                <p>
-                <fieldset>
-                    <legend>Featured Pet</legend>
-                      <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
-                      <tr>
-                        <td rel="stylesheet" href="styles.css">
-                          <img src="images/emma.jpg" width="auto"; height = "500"; margin = "auto"; />
-                        </td>
-                        <td class="td">
-                          <table>
-                            <tr>
-                              <td>
-                              Actual best dog
-                            </td>
-                          </tr>
-                            <tr>
-                              <td>
-                              This is emma, she turns 2 in may, she is a heffa. Also
-                              frick bagel
-                            </td>
-                          </tr>
-                          </table>
-                        </td>
-                      </tr>
-              </legend>
-              </fieldset>
 
 
                     <?PHP
