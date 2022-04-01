@@ -31,8 +31,9 @@ session_cache_expire(30);
                 include_once('domain/Shift.php');
                 include_once('database/dbShifts.php');
                 date_default_timezone_set('America/New_York');
+             //   echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
             //    fix_all_birthdays();
-                if ($_SESSION['_id'] != "guest") {
+                if ($_SESSION['access_level'] == 2) {
                     $person = retrieve_person($_SESSION['_id']);
                     echo "<p>Welcome, " . $person->get_first_name() . ", to Homebase!";
                 }
@@ -43,15 +44,11 @@ session_cache_expire(30);
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
-
-
+                <p>
                     <?PHP
-
-
-                    // This is the pre-existing homebase code, use as a reference but disregard for now
-                    if ($_SESSION['access_level'] == 0)
-                        echo('<p> To apply for volunteering at the Portland or Bangor Ronald McDonald House, '.
-                        		'please select <b>apply</b>.');
+                    //if ($_SESSION['access_level'] == 0)
+                     //   echo('<p> To apply for volunteering at the Portland or Bangor Ronald McDonald House, '.
+                     //   		'please select <b>apply</b>.');
                     if ($person) {
                         /*
                          * Check type of person, and display home page based on that.
@@ -63,16 +60,66 @@ session_cache_expire(30);
                          */
 
                         //APPLICANT CHECK
-                        if ($person->get_first_name() != 'guest') {
+                        //if ($person->get_first_name() != 'guest') {
                             //SHOW STATUS
-                            echo('<div class="infobox"><p><strong>Your application has been submitted.</strong><br><br /><table><tr><td><strong>Step</strong></td><td><strong>Completed?</strong></td></tr><tr><td>Background Check</td><td>' . $person['background_check'] . '</td></tr><tr><td>Interview</td><td>' . $person['interview'] . '</td></tr><tr><td>Shadow</td><td>' . $person['shadow'] . '</td></tr></table></p></div>');
-                        }
+                        //    echo('<div class="infobox"><p><strong>Your application has been submitted.</strong><br><br /><table><tr><td><strong>Step</strong></td><td><strong>Completed?</strong></td></tr><tr><td>Background Check</td><td>' . $person['background_check'] . '</td></tr><tr><td>Interview</td><td>' . $person['interview'] . '</td></tr><tr><td>Shadow</td><td>' . $person['shadow'] . '</td></tr></table></p></div>');
+                        //}
+
+                        //VOLUNTEER CHECK
+                        // if ($_SESSION['access_level'] == 1) {
+                        	
+                        // 	// display upcoming schedule
+                        //     $shifts = selectScheduled_dbShifts($person->get_id());
+
+                        //     $scheduled_shifts = array();
+                        //     foreach ($shifts as $shift) {
+                        //         $shift_month = get_shift_month($shift);
+                        //         $shift_day = get_shift_day($shift);
+                        //         $shift_year = get_shift_year($shift);
+
+                        //         $shift_time_s = get_shift_start($shift);
+                        //         $shift_time_e = get_shift_end($shift);
+
+                        //         $cur_month = date("m");
+                        //         $cur_day = date("d");
+                        //         $cur_year = date("y");
+
+                        //         if ($shift_year > $cur_year)
+                        //             $upcoming_shifts[] = $shift;
+                        //         else if ($shift_year == $cur_year) {
+                        //             if ($cur_month < $shift_month)
+                        //                 $upcoming_shifts[] = $shift;
+                        //             else if ($shift_month == $cur_month) {
+                        //                 if ($cur_day <= $shift_day) {
+                        //                     $upcoming_shifts[] = $shift;
+                        //                 }
+                        //             }
+                        //         }
+                        //     }
+                        //     if ($upcoming_shifts) {
+                        //         echo('<div class="scheduleBox"><p><strong>Your Upcoming Schedule:</strong><br /></p><ul>');
+                        //         foreach ($upcoming_shifts as $tableId) {
+                        //             echo('<li type="circle">' . get_shift_name_from_id($tableId)) . '</li>';
+                        //         }
+                        //         echo('</ul><p>If you need to cancel an upcoming shift, please contact the <a href="mailto:allen@npfi.org">House Manager</a>.</p></div>');
+                        //     }
+                            
+                        //     // link to personal profile for editing
+                        //     echo('<br><div class="scheduleBox"><p><strong>Your Personal Profile:</strong><br /></p><ul>');  
+                        //         echo('</ul><p>Go <strong><a href="personEdit.php?id='.$person->get_id()
+                        // 	   .'">here</a></strong> to view or update your contact information.</p></div>');
+                        //     // link to personal log sheet
+                        //     echo('<br><div class="scheduleBox"><p><strong>Your Log Sheet:</strong><br /></p><ul>');
+                        //         echo('</ul><p>Go <strong><a href="volunteerLog.php?id='.$person->get_id()
+                        // 	   .'">here</a></strong> to view or enter your recent volunteering hours.</p></div>');
+              
+                        // }
                         
                         if ($_SESSION['access_level'] == 2) {
                             //We have a manager authenticated
                             
                         	//active applicants box
-                        	$con=connect();
+                        	/**$con=connect();
                         	$app_query = "SELECT first_name,last_name,id, FROM dbPersons ORDER BY start_date desc";
                         	$applicants_tab = mysqli_query($con,$app_query);
                         	$numLines = 0;
@@ -96,6 +143,7 @@ session_cache_expire(30);
                                 '<td class="searchResults">' . $lo[2] . '</td></tr>');
                             }
                             echo ('</table><br><a href="' . $path . 'log.php">View full log</a></p></div><br>');
+                            */
                         }
                         //DEFAULT PASSWORD CHECK
                         if (md5($person->get_id()) == $person->get_password()) {

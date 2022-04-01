@@ -13,18 +13,23 @@
  */
 session_start();
 session_cache_expire(30);
-include_once('database/dbPersons.php');
-include_once('domain/Person.php');
+//include_once('database/dbPersons.php');
+include_once('database/dbAdopter.php');
+include_once('database/dbPetPost.php');
+//include_once('domain/Person.php');
+include_once('domain/PetPost.php');
 include_once('database/dbApplicantScreenings.php');
 include_once('domain/ApplicantScreening.php');
 include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
 if ($id == 'new') {
-    $person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
-                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");
+    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null);
+    /*$person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");*/
 } else {
-    $person = retrieve_person($id);
+    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null);
+    /*$person = retrieve_person($id);
     if (!$person) { // try again by changing blanks to _ in id
         $id = str_replace(" ","_",$_GET["id"]);
         $person = retrieve_person($id);
@@ -32,26 +37,18 @@ if ($id == 'new') {
             echo('<p id="error">Error: there\'s no person with this id in the database</p>' . $id);
             die();
         }
-    }
+    }*/
 }
 ?>
 <html>
     <head>
         <title>
-            Editing <?PHP echo($person->get_first_name() . " " . $person->get_last_name()); ?>
+            Editing <?PHP echo($petPost->get_name()); ?>
         </title>
         <link rel="stylesheet" href="lib/jquery-ui.css" />
         <link rel="stylesheet" href="styles.css" type="text/css" />
         <script src="lib/jquery-1.9.1.js"></script>
 		<script src="lib/jquery-ui.js"></script>
-		<script>
-			$(function(){
-				$( "#birthday" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true,yearRange: "1920:+nn"});
-				$( "#start_date" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true,yearRange: "1920:+nn"});
-				$( "#end_date" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true,yearRange: "1920:+nn"});
-				$( "#screening_status[]" ).datepicker({dateFormat: 'y-mm-dd',changeMonth:true,changeYear:true,yearRange: "1920:+nn"});
-			})
-		</script>
     </head>
     <body>
         <div id="container">
@@ -59,85 +56,62 @@ if ($id == 'new') {
             <div id="content">
                 <?PHP
                 include('personValidate.inc');
-                if ($_POST['_form_submit'] != 1)
+                /*if ($_POST['_form_submit'] != 1) {
                 //in this case, the form has not been submitted, so show it
-                    include('personForm.inc');
+                    include('petPostForm.inc');
                 else {
                     //in this case, the form has been submitted, so validate it
-                    $errors = validate_form($person);  //step one is validation.
+                    $errors = validate_form($petPost);  //step one is validation.
                     // errors array lists problems on the form submitted
                     if ($errors) {
                         // display the errors and the form to fix
                         show_errors($errors);
-                        if (!$_POST['availability'])
-                          $availability = null;
-                        else {
-                          $postavail = array();
-                          foreach ($_POST['availability'] as $postday) 
-                        	  $postavail[] = $postday;
-                          $availability = implode(',', $postavail);
-                        }
-                        if ($_POST['isstudent']=="yes")  {
-                        	$position="student";
-                        	$employer = $_POST['nameofschool'];
-                        }
-                        else {
-                        	$position = $_POST['position'];
-                        	$employer = $_POST['employer'];
-                        }
-                        $person = new Person($person->get_first_name(), $_POST['last_name'], $_POST['location'], 
-                        				$_POST['address'], $_POST['city'], $_POST['state'], $_POST['zip'],
-                                        $person->get_phone1(), $_POST['phone1type'], $_POST['phone2'],$_POST['phone2type'], 
-                        		        $_POST['email'], implode(',', $_POST['type']), 
-                        				$_POST['screening_type'], implode(',', $_POST['screening_status']),
-                                        $_POST['status'], $employer, $position, $_POST['credithours'], 
-                                        $_POST['commitment'], $_POST['motivation'], $_POST['specialties'], $_POST['convictions'], 
-                                        $availability, $_POST['schedule'], $_POST['hours'], 
-                                        $_POST['birthday'], $_POST['start_date'], $_POST['howdidyouhear'],
-                                        $_POST['notes'], $_POST['old_pass']);
-                        include('personForm.inc');
+                        $petPost = new PetPost($petPost->get_name(),
+                                        $_POST['email'],
+                                        $petPost->get_phone(),  
+                        				$_POST['pet_name'], $_POST['pet_type'], $_POST['pet_story'], $_POST['pet_picture']);
+                        include('petPostForm.inc');
                     }
                     // this was a successful form submission; update the database and exit
                     else
-                        process_form($id,$person);
+                        process_form($id,$petPost);
                         echo "</div>";
                     include('footer.inc');
                     echo('</div></body></html>');
                     die();
-                }
+                }*/
+                include('petPostForm.inc');
+                process_form($id,$petPost);
+                        echo "</div>";
+                    include('footer.inc');
+                    echo('</div></body></html>');
+                    die();
 
                 /**
                  * process_form sanitizes data, concatenates needed data, and enters it all into a database
                  */
-                function process_form($id,$person) {
+                function process_form($id,$petPost) {
                     //echo($_POST['first_name']);
                     //step one: sanitize data by replacing HTML entities and escaping the ' character
-                    if ($person->get_first_name()=="new")
-                   		$first_name = trim(str_replace('\\\'', '', htmlentities(str_replace('&', 'and', $_POST['first_name']))));
-                    else
-                    	$first_name = $person->get_first_name();
-                    $last_name = trim(str_replace('\\\'', '\'', htmlentities($_POST['last_name'])));
-                    $location = $_POST['location'];
-                    $address = trim(str_replace('\\\'', '\'', htmlentities($_POST['address'])));
-                    $city = trim(str_replace('\\\'', '\'', htmlentities($_POST['city'])));
-                    $state = trim(htmlentities($_POST['state']));
-                    $zip = trim(htmlentities($_POST['zip']));
-                    if ($person->get_first_name()=="new") {
-                    	$phone1 = trim(str_replace(' ', '', htmlentities($_POST['phone1'])));
-                    	$clean_phone1 = preg_replace("/[^0-9]/", "", $phone1);
-                    	$phone1type = $_POST['phone1type'];
+                    if ($petPost->get_name()=="new") {
+                   		$name = trim(str_replace('\\\'', '', htmlentities(str_replace('&', 'and', $_POST['name']))));
                     }
                     else {
-                    	$clean_phone1 = $person->get_phone1();
-                    	$phone1type = $person->get_phone1type();
+                    	$name = $petPost->get_name();
                     }
-                    $phone2 = trim(str_replace(' ', '', htmlentities($_POST['phone2'])));
-                    $clean_phone2 = preg_replace("/[^0-9]/", "", $phone2);
-                    $phone2type = $_POST['phone2type'];
+                    if ($petPost->get_name()=="new") {
+                    	$phone = trim(str_replace(' ', '', htmlentities($_POST['phone'])));
+                    	$clean_phone = preg_replace("/[^0-9]/", "", $phone);
+                    }
+                    else {
+                    	$clean_phone = $petPost->get_phone();
+                    }
                     $email = $_POST['email'];
-                    $type = implode(',', $_POST['type']);
-                    $screening_type = $_POST['screening_type'];
-                    if ($screening_type!="") {
+                    $pet_name = $_POST['pet_name'];
+                    $pet_type = $_POST['pet_type'];
+                    $pet_story = $_POST['pet_story'];
+                    $pet_picture = $_POST['pet_picture'];
+                    /*if ($screening_type!="") {
                     	$screening = retrieve_dbApplicantScreenings($screening_type);
                     	$step_array = $screening->get_steps();
                     	$step_count = count($step_array);
@@ -174,11 +148,11 @@ if ($id == 'new') {
                     $birthday = $_POST['birthday'];
                     $start_date = $_POST['start_date'];
                     $howdidyouhear = $_POST['howdidyouhear'];
-                    $notes = trim(str_replace('\\\'', '\'', htmlentities($_POST['notes'])));
+                    $notes = trim(str_replace('\\\'', '\'', htmlentities($_POST['notes'])));*/
                     //used for url path in linking user back to edit form
                     $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
                     //step two: try to make the deletion, password change, addition, or change
-                    if ($_POST['deleteMe'] == "DELETE") {
+                    /*if ($_POST['deleteMe'] == "DELETE") {
                         $result = retrieve_person($id);
                         if (!$result)
                             echo('<p>Unable to delete. ' . $first_name . ' ' . $last_name . ' is not in the database. <br>Please report this error to the House Manager.');
@@ -266,7 +240,7 @@ if ($id == 'new') {
                                 echo('<p>You have successfully edited <a href="' . $path . 'personEdit.php?id=' . $id . '"><b>' . $first_name . ' ' . $last_name . ' </b></a> in the database.</p>');
                             add_log_entry('<a href=\"personEdit.php?id=' . $id . '\">' . $first_name . ' ' . $last_name . '</a>\'s Personnel Edit Form has been changed.');
                         }
-                    }
+                    }*/
                 }
                 ?>
             </div>

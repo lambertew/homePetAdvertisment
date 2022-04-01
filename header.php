@@ -23,11 +23,11 @@
     <?PHP
     //Log-in security
     //If they aren't logged in, display our log-in form.
-    if (!isset($_SESSION['logged_in'])) {
+    //if (!isset($_SESSION['logged_in'])) {
     	
-        include('login_form.php');
-        die();
-    } else if ($_SESSION['logged_in']) {
+        //include('login_form.php');
+        //die();
+    //} else if ($_SESSION['logged_in']) {
 
         /*         * Set our permission array.
          * anything a guest can do, a volunteer and manager can also do
@@ -41,9 +41,10 @@
         $permission_array['index.php'] = 0;
         $permission_array['about.php'] = 0;
         $permission_array['apply.php'] = 0;
+        $permission_array['petpostform.php'] = 0;
         //pages volunteers can view
-        $permission_array['help.php'] = 1;
-        $permission_array['calendar.php'] = 1;
+        $permission_array['help.php'] = 0;
+        $permission_array['calendar.php'] = 0;
         //pages only managers can view
         $permission_array['personsearch.php'] = 2;
         $permission_array['personedit.php'] = 2;
@@ -51,6 +52,7 @@
         $permission_array['addweek.php'] = 2;
         $permission_array['log.php'] = 2;
         $permission_array['reports.php'] = 2;
+        $permission_array['resetPassword.php'] = 2;
 
         //Check if they're at a valid page for their access level.
         $current_page = strtolower(substr($_SERVER['PHP_SELF'], strpos($_SERVER['PHP_SELF'],"/")+1));
@@ -74,23 +76,29 @@
         // 	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         // }
         // else {
-        	echo " <br><b>"."Homebase"."</b> ";
-	        if ($_SESSION['access_level'] >= 1) {
+        	echo " <br><b>"."SPCA"."</b> ";
+	        if ($_SESSION['access_level'] == 0) {
+	            echo('<a href="' . $path . 'index.php">home</a>');
+	            echo(' | <a href="' . $path . 'about.php">about</a>');
+	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
+	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
+	            echo(' | <a href="' . $path . 'login_form.php">login</a>');
+	        } else {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
+                echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
 	            echo(' <a href="' . $path . 'calendar.php?venue=bangor'.''.'">Bangor</a>');
 	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=portland'."".'">Portland, </a>');
 	            echo('<a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Bangor</a>');
-	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, 
-				        <a href="personEdit.php?id=' . 'new' . '">Create New Admin, </a> <a href="resetPassword.php">Reset Password</a>');
+	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, <a href="personEdit.php?id=' . 'new' . '">Create New Admin, </a> <a href="resetPassword.php">Reset Password</a>');
 	            echo(' | <a href="' . $path . 'reports.php?venue='.$_SESSION['venue'].'">reports</a>');
+	            echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
 	        }
-	        echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
         // }
         
-    }
+    //}
     ?>
 </div>
 <!-- End Header -->
