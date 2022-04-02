@@ -40,6 +40,7 @@ session_cache_expire(30);
                 else 
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
+                include_once('petPost.php');
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
