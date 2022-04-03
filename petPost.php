@@ -12,6 +12,7 @@ function petPostTemplate( $pet_img, $content ){
     return '';
   }
 
+  // Commenting this out until we have a set format for pulling the pet posts from the database, might actually do that in this file
   // Make values in the associative array easier to access by extracting them
   // if ( is_array( $content ) ){
   //   extract( $content );
@@ -43,7 +44,5 @@ function petPostTemplate( $pet_img, $content ){
         </tr>
       </legend>
   </fieldset>';
-  
-  // return ob_get_clean();
 }
 ?>
