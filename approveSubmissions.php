@@ -38,11 +38,12 @@ include_once('domain/PetPost.php');
                     $petpost = retrieve_awaiting_approval();
                     $petpostid = $petpost->get_id();
                     process_approval($petpostid);
-                    echo "</div>";
-                    include('footer.inc');
-                    echo('</div></body></html>');
-                    die();
+                    
                 }
+                echo "</div>";
+                include('footer.inc');
+                echo('</div></body></html>');
+                die();
 
                 /**
                  * process_form sanitizes data, concatenates needed data, and enters it all into a database
