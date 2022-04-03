@@ -35,12 +35,11 @@ session_cache_expire(30);
             //    fix_all_birthdays();
                 if ($_SESSION['access_level'] == 2) {
                     $person = retrieve_person($_SESSION['_id']);
-                    echo "<p>Welcome, " . $person->get_first_name() . ", to Homebase!";
+                    echo "<p>Welcome, " . $person->get_first_name() . ", to SPCA!";
                 }
                 else 
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
-                include_once('petPost.php');
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
@@ -163,9 +162,8 @@ session_cache_expire(30);
                             echo('<br clear="all">');
                         }
                     }
-                    ?>
-                    </div>
-                    <?PHP include('footer.inc'); ?>
+                    include_once('petPost.php');?>
+              </div>
         </div>
     </body>
 </html>
