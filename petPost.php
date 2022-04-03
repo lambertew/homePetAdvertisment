@@ -27,5 +27,6 @@
             </table>
           </td>
         </tr>
+      </table>  
       </legend>
 </fieldset>

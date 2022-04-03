@@ -76,6 +76,6 @@ INSERT INTO `dbAdopter` (`id`,`name`, `phone`, `email`) VALUES
 ('0','Adopter Adopterson', '1234567890', "adopterson@fake.com"),
 ('1', 'Paul Narkinsky', '55555555555', 'jnarkins@umw.edu');
 
-INSERT INTO `dbPetPOST` (`id`,`owner_id`, `petName`, `petType`, `petStory`, `petPicture`, `approved`) VALUES
-('0', '1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 1),
+INSERT INTO `dbPetPost` (`id`,`owner_id`, `petName`, `petType`, `petStory`, `petPicture`, `approved`) VALUES
+('0', '1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 0),
 ('1', '0', 'Bagel', 'Cat', 'Nova scotian badass', 'images/bagel.jpg', 0);
