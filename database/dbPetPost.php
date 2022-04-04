@@ -72,6 +72,19 @@ function retrieve_petpost_by_petname ($name) {
     return $petposts;
 }
 
+function retrieve_petpost_by_pettype ($pettype) {
+    $petposts = array();
+    if (!isset($pettype) || $pettype = "" || $pettype == null) return $petposts;
+    $con=connect();
+    $query = "SELECT * FROM dbpetpost WHERE petType = '. $pettype .'";
+    $result = mysqli_query($con,$query);
+    while ($result_row = mysqli_fetch_assoc($result)) {
+        $the_petpost = make_a_petpost($result_row);
+        $petposts[] = $the_petpost;
+    }
+    return $petposts;
+}
+
 function make_a_petpost($result_row) {
     /*
      ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
