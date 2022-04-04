@@ -15,85 +15,71 @@
 class PetPost {
 
     private $id;   // id (unique key) = pet_name . phone
-    private $name;  // name as a string
-    private $email;  // email address as a string
-    private $phone;  // phone number as a string
-    private $pet_name;     // pet name as a string
-    private $pet_type;      // pet type -- dog, cat, or other
-    private $pet_story;  // short story as a string
-    private $pet_picture;  // image of pet
+    private $owner_id;
+    private $petName;     // pet name as a string
+    private $petType;      // pet type -- dog, cat, or other
+    private $petStory;  // short story as a string
+    private $petPicture;  // image of pet
+    private $approved;
 
     /*
      * makes a pet post object.  from either the db or from the generating form in edit shifts
      */
 
-    function __construct($n, $e, $p, $pn, $pt, $ps, $pp) {
-        $this->id = $n . $p;
-        $this->name = $n;
-        $this->email = $e;
-        $this->phone = $p;
-        $this->pet_name = $pn;
-        $this->pet_type = $pt;
-        $this->pet_story = $ps;
-        $this->pet_picture = $pp;
+    function __construct($i, $oi, $pn, $pt, $ps, $pp, $a) {
+        $this->id = $i;
+        $this->owner_id = $oi;
+        $this->petName = $pn;
+        $this->petType = $pt;
+        $this->petStory = $ps;
+        $this->petPicture = $pp;
+        $this->approved = $a;
+        
     }
 
     function get_id() {
         return $this->id;
     }
 
-    function get_name() {
-        return $this->name;
-    }
-
-    function get_email() {
-        return $this->email;
-    }
-
-    function get_phone() {
-        return $this->phone;
+    function get_owner_id() {
+        return $this->owner_id;
     }
 
     function get_pet_name() {
-        return $this->pet_name;
+        return $this->petName;
     }
 
     function get_pet_type() {
-        return $this->pet_type;
+        return $this->petType;
     }
 
     function get_pet_story() {
-        return $this->pet_story;
+        return $this->petStory;
     }
 
     function get_pet_picture() {
-        return $this->pet_picture;
+        return $this->petPicture;
     }
-
-    function set_name($name) {
-        $this->name = $name;
-    }
-
-    function set_email($email) {
-        $this->email = $email;
+    
+    function get_approved() {
+        return $this->approved;
     }
 
     function set_pet_name($pet_name) {
-        $this->pet_name = $pet_name;
+        $this->petName = $pet_name;
     }
 
     function set_pet_type($pet_type) {
-        $this->pet_type = $pet_type;
+        $this->petType = $pet_type;
     }
 
     function set_pet_story($pet_story) {
-        $this->pet_story = $pet_story;
+        $this->petStory = $pet_story;
     }
 
     function set_pet_picture($pet_picture) {
-        $this->pet_picture = $pet_picture;
+        $this->petPicture = $pet_picture;
     }
-
 }
 
 ?>
