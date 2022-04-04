@@ -35,7 +35,7 @@ session_cache_expire(30);
             //    fix_all_birthdays();
                 if ($_SESSION['access_level'] == 2) {
                     $person = retrieve_person($_SESSION['_id']);
-                    echo "<p>Welcome, " . $person->get_first_name() . ", to Homebase!";
+                    echo "<p>Welcome, " . $person->get_first_name() . ", to the SPCA!";
                 }
                 else 
                     echo "<p>Welcome!";
