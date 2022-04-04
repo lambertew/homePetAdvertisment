@@ -101,4 +101,49 @@ function make_a_petpost($result_row) {
         $result_row['approved']);
     return $thePetPost;
 }
+
+function retrieve_awaiting_approval() {
+    $con=connect();
+    $query = 'SELECT * FROM dbPetPost WHERE approved = 0 LIMIT 1';
+    $result = mysqli_query($con,$query);
+    if (!$result)
+    {
+        return null;
+    }
+    $result_row = mysqli_fetch_assoc($result);
+    $the_petpost = make_a_petpost($result_row);
+    return $the_petpost;
+}
+
+function make_a_petpost($result_row) {
+    /*
+     ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
+     $screening_type, $screening_status, $st, $emp, $pos, $hours, $comm, $mot, $spe,
+     $convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass)
+     */
+    $thePetPost = new PetPost(
+        $result_row['id'],
+        $result_row['owner_id'],
+        $result_row['petName'],
+        $result_row['petType'],
+        $result_row['petStory'],
+        $result_row['petPicture'],
+        $result_row['approved']);
+    return $thePetPost;
+}
+
+function update_approval($id)
+{
+    $con=connect();
+    $query = 'SELECT * FROM dbpetpost WHERE id = "' . $id . '"';
+    $result = mysqli_query($con,$query);
+    if ($result == null || mysqli_num_rows($result) == 0) {
+        mysqli_close($con);
+        return false;
+    }
+    $query = 'UPDATE dbpetpost SET approved = 1 WHERE id = "' . $id . '"';
+    $result = mysqli_query($con,$query);
+    mysqli_close($con);
+    return true;
+}
 ?>
