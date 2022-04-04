@@ -42,6 +42,7 @@ function petPostTemplate( $pet_img, $content ){
             </table>
           </td>
         </tr>
+      </table>  
       </legend>
   </fieldset>';
 }
