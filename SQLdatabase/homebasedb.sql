@@ -77,7 +77,7 @@ INSERT INTO `dbAdopter` (`id`,`name`, `phone`, `email`) VALUES
 ('1', 'Paul Narkinsky', '55555555555', 'jnarkins@umw.edu'),
 ('2', 'Jacob Weisbeck', '1111111111', 'chivalryisdead@umw.edu');
 
-INSERT INTO `dbPetPOST` (`id`,`owner_id`, `petName`, `petType`, `petStory`, `petPicture`, `approved`) VALUES
+INSERT INTO `dbPetPost` (`id`,`owner_id`, `petName`, `petType`, `petStory`, `petPicture`, `approved`) VALUES
 ('0', '1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 0),
 ('1', '0', 'Bagel', 'Cat', 'Nova scotian badass', 'images/bagel.jpg', 0),
 ('2', '1', 'Ladybug', 'Dog', 'Scared of bikes and parked cars', 'images/ladybug02.jpg', 0),
