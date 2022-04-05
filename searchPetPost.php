@@ -1,8 +1,9 @@
-<?php 
-    session_start();
-    session_cache_expire(30);
-    include_once('database/dbPetPost.php');
-    include_once('domain/PetPost.php');
+<?php
+
+    #session_start();
+    #session_cache_expire(30);
+    #include_once('database/dbPetPost.php');
+    #include_once('domain/PetPost.php');
 ?>
 
 
@@ -24,8 +25,8 @@
 			</form>
 		</center>
 		<?php
-		if (isset($_POST['k']) && $_POST['k'] != '') {
-		    $pettype = $_POST['k'];
+		if (isset($_GET['k']) && $_GET['k'] != '') {
+		    $pettype = $_GET['k'];
 		    $petposts = retrieve_petpost_by_pettype($pettype);
 		    if (!$petposts) {
 		        echo "No Results Found";

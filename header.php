@@ -79,29 +79,24 @@
         	echo " <br><b>"."SPCA"."</b> ";
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">home</a>');
-                echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'about.php">about</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
-	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
+                echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'login_form.php">login</a>');
 	        } else {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
                 echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
-	            echo(' | calendars: <a href="' . $path . 'calendar.php?venue=portland'.''.'">Portland, </a>');
-	            echo(' <a href="' . $path . 'calendar.php?venue=bangor'.''.'">Bangor</a>');
-	            echo('<br>master schedules: <a href="' . $path . 'viewSchedule.php?venue=portland'."".'">Portland, </a>');
-	            echo('<a href="' . $path . 'viewSchedule.php?venue=bangor'."".'">Bangor</a>');
-	            echo(' | volunteers: <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>, <a href="personEdit.php?id=' . 'new' . '">Create New Admin, </a> <a href="resetPassword.php">Reset Password</a>');
-	            echo(' | <a href="' . $path . 'reports.php?venue='.$_SESSION['venue'].'">reports</a>');
-	            echo(' | volunteers: <a href="' . $path . 'personSearch.php">search</a>, <a href="personEdit.php?id=' . 'new' . '">Create New Admin, </a> <a href="resetAuth.php">Reset Password</a>');
+	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
+	            echo(' | <a href="' . $path . 'personEdit.php?id=' . 'new' . '">Create New Admin</a>');
+                echo(' | <a href="' . $path . 'resetPassword.php">Reset Password</a>');
 	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
 	            echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
 	        }
         // }
         
     //}
-    ?>
+?>
 </div>
 <!-- End Header -->
