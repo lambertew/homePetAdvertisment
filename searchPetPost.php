@@ -17,12 +17,11 @@
 		<center>
 			<form action="" method="POST" name="">
 				<select name="pettype">
-				    <option value="Select Pet Type">Select</option>
 					<option value="Dog">Dog</option>
 					<option value="Cat">Cat</option>
 					<option value="Other">Other</option>
 				</select>
-				<input type="submit" name="submit" value="select" />
+				<input type="submit" name="submit" value="Select" />
 			</form>
 		</center>
 		<?php 
@@ -33,17 +32,22 @@
 		      echo "No results found";
 		  } else {
 		      for ($x = 0; $x < sizeof($petposts); $x++) {
+		          $approval = $petposts[$x]->get_approved();
 		          $petname = $petposts[$x]->get_pet_name();
 		          $petstory = $petposts[$x]->get_pet_story();
-		          $petpicture = $petposts[$x]->get_pet_picture();?>
-		          <fieldset style="text-align:center";>
-		          <legend><b><?php echo $petname ?></b></legend>
-		          <div style="display:inline-block; margin:auto;">
-		          	<br><img src="<?php echo htmlspecialchars($petpicture); ?>" alt="test" width="200" height="200"/>
-		            <p style="text-align:center";><?php echo $petstory?></p>
-		          </div>
-		          </fieldset>
+		          $petpicture = $petposts[$x]->get_pet_picture();
+		          if ($approval == 1) {?>
+		          	<fieldset style="text-align:center";>
+		          		<legend><b><?php echo $petname ?></b></legend>
+		          		<div style="display:inline-block; margin:auto;">
+		          			<br><img src="<?php echo htmlspecialchars($petpicture); ?>" alt="test" width="200" height="200"/>
+		            		<p style="text-align:center";><?php echo $petstory?></p>
+		          		</div>
+		          	</fieldset>
 		          <?php
+		          } else {
+		              continue;
+		          }
 		      }
 		  }
 		}
