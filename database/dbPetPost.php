@@ -72,17 +72,17 @@ function retrieve_petpost_by_petname ($name) {
     return $petposts;
 }
 
-function retrieve_awaiting_approval() {
+function retrieve_petpost_by_pettype ($pettype) {
+    $petposts = array();
+    #if (!isset($pettype) || $pettype = "" || $pettype == null) return $petposts;
     $con=connect();
-    $query = 'SELECT * FROM dbPetPost WHERE approved = 0 LIMIT 1';
+    $query = 'SELECT * FROM dbpetpost WHERE petType = "' . $pettype . '"';
     $result = mysqli_query($con,$query);
-    if (!$result)
-    {
-        return null;
+    while ($result_row = mysqli_fetch_assoc($result)) {
+        $the_petpost = make_a_petpost($result_row);
+        $petposts[] = $the_petpost;
     }
-    $result_row = mysqli_fetch_assoc($result);
-    $the_petpost = make_a_petpost($result_row);
-    return $the_petpost;
+    return $petposts;
 }
 
 function make_a_petpost($result_row) {
@@ -100,6 +100,19 @@ function make_a_petpost($result_row) {
         $result_row['petPicture'],
         $result_row['approved']);
     return $thePetPost;
+}
+
+function retrieve_awaiting_approval() {
+    $con=connect();
+    $query = 'SELECT * FROM dbPetPost WHERE approved = 0 LIMIT 1';
+    $result = mysqli_query($con,$query);
+    if (!$result)
+    {
+        return null;
+    }
+    $result_row = mysqli_fetch_assoc($result);
+    $the_petpost = make_a_petpost($result_row);
+    return $the_petpost;
 }
 
 function update_approval($id)

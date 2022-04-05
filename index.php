@@ -46,7 +46,6 @@ session_cache_expire(30);
                 include('petPost.php');
                 echo petPostTemplate($img, $content);
                 
-
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->
@@ -169,9 +168,8 @@ session_cache_expire(30);
                         //     echo('<br clear="all">');
                         // }
                     }
-                    ?>
-                    </div>
-                    <?PHP include('footer.inc'); ?>
+                    #include_once('petPost.php');?>
+              </div>
         </div>
     </body>
 </html>
