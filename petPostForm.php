@@ -43,7 +43,7 @@ if ($id == 'new') {
 <html>
     <head>
         <title>
-            Editing <?PHP echo($petPost->get_name()); ?>
+            Editing <?PHP echo($petPost->get_pet_name()); ?>
         </title>
         <link rel="stylesheet" href="lib/jquery-ui.css" />
         <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -93,17 +93,18 @@ if ($id == 'new') {
                 function process_form($id,$petPost) {
                     //echo($_POST['first_name']);
                     //step one: sanitize data by replacing HTML entities and escaping the ' character
-                    if ($petPost->get_name()=="new") {
+                    if ($petPost->get_pet_name()=="new") {
                    		$name = trim(str_replace('\\\'', '', htmlentities(str_replace('&', 'and', $_POST['name']))));
                     }
                     else {
-                    	$name = $petPost->get_name();
+                    	$name = $petPost->get_pet_name();
                     }
-                    if ($petPost->get_name()=="new") {
+                    if ($petPost->get_pet_name()=="new") {
                     	$phone = trim(str_replace(' ', '', htmlentities($_POST['phone'])));
                     	$clean_phone = preg_replace("/[^0-9]/", "", $phone);
                     }
                     else {
+                        // This line needs to be updated because a pet post does not store the phone, the adopter does
                     	$clean_phone = $petPost->get_phone();
                     }
                     $email = $_POST['email'];
