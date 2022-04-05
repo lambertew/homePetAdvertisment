@@ -1,9 +1,9 @@
 <?php
 
-    #session_start();
-    #session_cache_expire(30);
-    #include_once('database/dbPetPost.php');
-    #include_once('domain/PetPost.php');
+    session_start();
+    session_cache_expire(30);
+    include_once('database/dbPetPost.php');
+    include_once('domain/PetPost.php');
 ?>
 
 
@@ -16,39 +16,36 @@
 	<div id="content">
 		<center>
 			<form action="" method="POST" name="">
-				<table>
-					<tr>
-						<td><input type = "text" name="k" placeholder="Search Pet Posts" autocomplete="off"></td>
-						<td><input type = "submit" name="" value="Search"></td>
-					</tr>
-				</table>
+				<select name="pettype">
+				    <option value="Select Pet Type">Select</option>
+					<option value="Dog">Dog</option>
+					<option value="Cat">Cat</option>
+					<option value="Other">Other</option>
+				</select>
+				<input type="submit" name="submit" value="select" />
 			</form>
 		</center>
-		<?php
-		if (isset($_GET['k']) && $_GET['k'] != '') {
-		    $pettype = $_GET['k'];
-		    $petposts = retrieve_petpost_by_pettype($pettype);
-		    if (!$petposts) {
-		        echo "No Results Found";
-		    } else {
-		        for ($x = 0; $x < sizeof($petposts); $x++) {
-		          $ownerid = $petposts[$x]->get_owner_id();
+		<?php 
+		if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		  $type = $_POST['pettype'];
+		  $petposts = retrieve_petpost_by_pettype($type);
+		  if (!$petposts) {
+		      echo "No results found";
+		  } else {
+		      for ($x = 0; $x < sizeof($petposts); $x++) {
 		          $petname = $petposts[$x]->get_pet_name();
-		          $pettype1 = $petposts[$x]->get_pet_type();
 		          $petstory = $petposts[$x]->get_pet_story();
-		          $petpicture = $petposts[$x]->get_pet_picture();
-		          echo "$ownerid, $petname, $pettype1, $petstory\n";
-		        }
-		        ?>
-		        <html>
-		        <div>
-		        	<img src="<?php echo htmlspecialchars($petpicture); ?>" alt="test" width="200" height="200"/>
-		        </div>
-		        </html>
-		        <?php
-		    }
-		} else {
-		    echo "No Results Found";
+		          $petpicture = $petposts[$x]->get_pet_picture();?>
+		          <fieldset style="text-align:center";>
+		          <legend><b><?php echo $petname ?></b></legend>
+		          <div style="display:inline-block; margin:auto;">
+		          	<br><img src="<?php echo htmlspecialchars($petpicture); ?>" alt="test" width="200" height="200"/>
+		            <p style="text-align:center";><?php echo $petstory?></p>
+		          </div>
+		          </fieldset>
+		          <?php
+		      }
+		  }
 		}
 		?>
 	</div>
