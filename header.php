@@ -82,6 +82,7 @@
 	            echo(' | <a href="' . $path . 'about.php">about</a>');
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
                 echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
+                echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
 	            echo(' | <a href="' . $path . 'login_form.php">login</a>');
 	        } else {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
@@ -90,7 +91,7 @@
                 echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
 	            echo(' | <a href="' . $path . 'personEdit.php?id=' . 'new' . '">Create New Admin</a>');
-                echo(' | <a href="' . $path . 'resetPassword.php">Reset Password</a>');
+                echo(' | <a href="' . $path . 'resetAuth.php">Reset Password</a>');
 	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
 	            echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
 	        }

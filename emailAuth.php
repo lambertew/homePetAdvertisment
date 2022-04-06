@@ -75,7 +75,7 @@ include_once('domain/Person.php');
                     {
                         echo('<div class="warning">');
                         echo('<ul>');
-                        echo("<li><strong><font color=\"red\">" . $_SESSION['realCode'] . "</font></strong></li>\n");
+                        echo("<li><strong><font color=\"red\">Incorrect Verification Code</font></strong></li>\n");
                         echo("</ul></div></p>");
                         include('verificationCodeForm.inc');
                     }
