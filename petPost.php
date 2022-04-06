@@ -6,11 +6,17 @@
  * @param $content   - Associative array of variables to pass to the template file.
  * @return string - Output of the template file. Likely HTML.
  */
-function petPostTemplate( $pet_img, $content ){
+
+include_once('database/dbPetPost.php');
+include_once('domain/PetPost.php');
+
+function petPostTemplate( $pet ){
   // ensure the file exists
-  if ( !file_exists( $pet_img ) ) {
-    return '';
-  }
+  $petname = $pet->get_pet_name();
+  $pettype = $pet->get_pet_type();
+  $petstory = $pet->get_pet_story();
+  $petpicture = $pet->get_pet_picture();
+
 
   // Commenting this out until we have a set format for pulling the pet posts from the database, might actually do that in this file
   // Make values in the associative array easier to access by extracting them
@@ -24,19 +30,18 @@ function petPostTemplate( $pet_img, $content ){
         <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
         <tr>
           <td rel="stylesheet" href="styles.css">
-            <img src="'.$pet_img.'" width="auto"; height = "500"; margin = "auto"; />
+            <img src="'.$petpicture.'" width="auto"; height = "500"; margin = "auto"; />
           </td>
           <td class="td">
             <table>
               <tr>
                 <td>
-                '.$content.'
+                '.$petname.', '.$pettype.'
               </td>
             </tr>
               <tr>
                 <td>
-                This is emma, she turns 2 in may, she is a heffa. Also
-                frick bagel
+                '.$petstory.'
               </td>
             </tr>
             </table>
