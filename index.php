@@ -35,7 +35,7 @@ session_cache_expire(30);
                 date_default_timezone_set('America/New_York');
                 if ($_SESSION['access_level'] == 2) {
                     $person = retrieve_person($_SESSION['_id']);
-                    echo "<p>Welcome, " . $person->get_first_name() . ", to Homebase!";
+                    echo "<p>Welcome, " . $person->get_first_name() . ", to the SPCA!";
                 }
                 else 
                     echo "<p>Welcome!";
@@ -43,7 +43,6 @@ session_cache_expire(30);
                 
                 echo $pet[0]->get_pet_name();
                 echo petPostTemplate($pet[0], "Featured Pet");
-                
 
                 ?>
 
@@ -167,9 +166,8 @@ session_cache_expire(30);
                         //     echo('<br clear="all">');
                         // }
                     }
-                    ?>
-                    </div>
-                    <?PHP include('footer.inc'); ?>
+                    #include_once('petPost.php');?>
+              </div>
         </div>
     </body>
 </html>
