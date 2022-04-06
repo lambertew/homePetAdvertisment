@@ -10,7 +10,7 @@
 include_once('database/dbPetPost.php');
 include_once('domain/PetPost.php');
 
-function petPostTemplate( $pet ){
+function petPostTemplate( $pet, $postDesc ){
   // ensure the file exists
   $petname = $pet->get_pet_name();
   $pettype = $pet->get_pet_type();
@@ -26,7 +26,7 @@ function petPostTemplate( $pet ){
 
   ob_start();
   echo '<fieldset>
-      <legend>Featured Pet</legend>
+      <legend>'.$postDesc.'</legend>
         <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
         <tr>
           <td rel="stylesheet" href="styles.css">

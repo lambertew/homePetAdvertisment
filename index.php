@@ -42,7 +42,7 @@ session_cache_expire(30);
                 echo "   Today is " . date('l F j, Y') . ".<p>";
                 
                 echo $pet[0]->get_pet_name();
-                echo petPostTemplate($pet[0]);
+                echo petPostTemplate($pet[0], "Featured Pet");
                 
 
                 ?>

@@ -1,15 +1,12 @@
 <?php
-include('petPost.php');
 echo('<p><strong>Pet Post Approval Form</strong><br />');
 echo('Testing Pet Post Approval ' .
 '<br>If everything looks good, hit <b>Approve</b> at the bottom of this page.' . 
 '<br>If somethings looks bad, hit <b>Deny</b> at the bottom of this page.');
 
 ?>
-test
 <form method="POST">
     <input type="hidden" name="_form_submit" value="1">
-    <?php petPostTemplate($petpost) ?>
     <p>
         <?php
         echo('Hit <input type="submit" value="Approve" name="Choice"> to approve the pet post.<br /><br />');
