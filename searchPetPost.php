@@ -17,6 +17,7 @@
 		<center>
 			<form action="" method="POST" name="">
 				<select name="pettype">
+					<option value="" disabled selected hidden>Select a Pet-Type</option>
 					<option value="Dog">Dog</option>
 					<option value="Cat">Cat</option>
 					<option value="Other">Other</option>
