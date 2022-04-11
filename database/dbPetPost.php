@@ -129,4 +129,12 @@ function update_approval($id)
     mysqli_close($con);
     return true;
 }
+
+function next_id() {
+    $con=connect();
+    $query = 'SELECT MAX(id) AS next_id FROM dbpetpost';
+    $result = mysqli_query($con,$query);
+    $the_id = $result + 1;
+    return $the_id;
+}
 ?>

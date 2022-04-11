@@ -12,38 +12,24 @@
  * 	@version 9/1/2008 revised 4/1/2012 revised 8/3/2015
  */
 session_start();
-session_cache_expire(30);
+//session_cache_expire(30);
 //include_once('database/dbPersons.php');
-include_once('database/dbAdopter.php');
+//include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
 //include_once('domain/Person.php');
 include_once('domain/PetPost.php');
-include_once('database/dbApplicantScreenings.php');
-include_once('domain/ApplicantScreening.php');
+//include_once('database/dbApplicantScreenings.php');
+//include_once('domain/ApplicantScreening.php');
 include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
-if ($id == 'new') {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null);
-    /*$person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
-                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");*/
-} else {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null);
-    /*$person = retrieve_person($id);
-    if (!$person) { // try again by changing blanks to _ in id
-        $id = str_replace(" ","_",$_GET["id"]);
-        $person = retrieve_person($id);
-        if (!$person) {
-            echo('<p id="error">Error: there\'s no person with this id in the database</p>' . $id);
-            die();
-        }
-    }*/
-}
+$petpost = new PetPost(101, 0, null, null, null, null, 0);
+
 ?>
 <html>
     <head>
         <title>
-            Editing <?PHP echo($petPost->get_pet_name()); ?>
+            Editing <?PHP //echo($petPost->get_pet_name()); ?>
         </title>
         <link rel="stylesheet" href="lib/jquery-ui.css" />
         <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -55,33 +41,26 @@ if ($id == 'new') {
             <?PHP include('header.php'); ?>
             <div id="content">
                 <?PHP
-                include('personValidate.inc');
-                /*if ($_POST['_form_submit'] != 1) {
-                //in this case, the form has not been submitted, so show it
+                if ($_POST['_form_submit'] != 1)
+                {
                     include('petPostForm.inc');
-                else {
-                    //in this case, the form has been submitted, so validate it
-                    $errors = validate_form($petPost);  //step one is validation.
-                    // errors array lists problems on the form submitted
-                    if ($errors) {
-                        // display the errors and the form to fix
-                        show_errors($errors);
-                        $petPost = new PetPost($petPost->get_name(),
-                                        $_POST['email'],
-                                        $petPost->get_phone(),  
-                        				$_POST['pet_name'], $_POST['pet_type'], $_POST['pet_story'], $_POST['pet_picture']);
-                        include('petPostForm.inc');
-                    }
-                    // this was a successful form submission; update the database and exit
-                    else
-                        process_form($id,$petPost);
-                        echo "</div>";
-                    include('footer.inc');
-                    echo('</div></body></html>');
-                    die();
-                }*/
-                include('petPostForm.inc');
-                process_form($id,$petPost);
+                }
+                else if ($_POST['_form_submit'] == 1)
+                {
+                    $petName = $_POST['petName'];
+                    $petType = $_POST['petType'];
+                    $petStory = $_POST['petStory'];
+                    $petPicture = $_POST['petPicture'];
+                    //used for url path in linking user back to edit form
+                    //$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
+
+                    $newpetpost = new PetPost(rand(5, 1000), 0, $petName, $petType, $petStory, $petPicture, 0);
+                    add_petpost($newpetpost);
+                    include('petPostForm.inc');
+                    //echo("Post successfully submitted for approval");
+                    //process_form($id,$petPost);
+                }
+                $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
                         echo "</div>";
                     include('footer.inc');
                     echo('</div></body></html>');
