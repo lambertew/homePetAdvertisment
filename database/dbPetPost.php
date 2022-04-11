@@ -59,6 +59,19 @@ function remove_petpost($id) {
     return true;
 }
 
+function retrieve_petpost_by_petid ($id) {
+    $con=connect();
+    $query = 'SELECT * FROM dbpetpost WHERE id = "' . $id . '"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        return null;
+    }
+    $result_row = mysqli_fetch_assoc($result);
+    $the_petpost = make_a_petpost($result_row);
+    return $the_petpost;
+    
+}
+
 function retrieve_petpost_by_petname ($name) {
     $petposts = array();
     if (!isset($name) || $name == "" || $name == null) return $petposts;
@@ -85,21 +98,19 @@ function retrieve_petpost_by_pettype ($pettype) {
     return $petposts;
 }
 
-function make_a_petpost($result_row) {
-    /*
-     ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
-     $screening_type, $screening_status, $st, $emp, $pos, $hours, $comm, $mot, $spe,
-     $convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass)
-     */
-    $thePetPost = new PetPost(
-        $result_row['id'],
-        $result_row['owner_id'],
-        $result_row['petName'],
-        $result_row['petType'],
-        $result_row['petStory'],
-        $result_row['petPicture'],
-        $result_row['approved']);
-    return $thePetPost;
+function retrieve_all_petposts() {
+    $petposts = array();
+    $con=connect();
+    $query = "SELECT * FROM dbPetPost";
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        return null;
+    }
+    while ($result_row = mysqli_fetch_assoc($result)) {
+        $the_petpost = make_a_petpost($result_row);
+        $petposts[] = $the_petpost;
+    }
+    return $petposts;
 }
 
 function retrieve_awaiting_approval() {
@@ -115,6 +126,7 @@ function retrieve_awaiting_approval() {
     return $the_petpost;
 }
 
+
 function update_approval($id)
 {
     $con=connect();
@@ -128,5 +140,22 @@ function update_approval($id)
     $result = mysqli_query($con,$query);
     mysqli_close($con);
     return true;
+}
+
+function make_a_petpost($result_row) {
+    /*
+     ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
+     $screening_type, $screening_status, $st, $emp, $pos, $hours, $comm, $mot, $spe,
+     $convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass)
+     */
+    $thePetPost = new PetPost(
+        $result_row['id'],
+        $result_row['owner_id'],
+        $result_row['petName'],
+        $result_row['petType'],
+        $result_row['petStory'],
+        $result_row['petPicture'],
+        $result_row['approved']);
+    return $thePetPost;
 }
 ?>

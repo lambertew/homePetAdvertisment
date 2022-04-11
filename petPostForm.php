@@ -14,13 +14,10 @@
 session_start();
 session_cache_expire(30);
 //include_once('database/dbPersons.php');
-include_once('database/dbAdopter.php');
+#include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
 //include_once('domain/Person.php');
 include_once('domain/PetPost.php');
-include_once('database/dbApplicantScreenings.php');
-include_once('domain/ApplicantScreening.php');
-include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
 if ($id == 'new') {
