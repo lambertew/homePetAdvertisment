@@ -17,9 +17,9 @@
 include_once('dbinfo.php');
 include_once(dirname(__FILE__).'/../domain/Adopter.php');
 
-function retrieve_adopter_by_name ($name) {
+function retrieve_adopter_by_id ($id) {
     $con=connect();
-    $query = 'SELECT * FROM dbadopter WHERE name="' . $name . '" LIMIT 1';
+    $query = 'SELECT * FROM dbadopter WHERE id="' . $id . '" LIMIT 1';
     $result = mysqli_query($con,$query);
     if (!$result)
     {

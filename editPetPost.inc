@@ -10,11 +10,11 @@ echo('Fill in all the required fields to create a new pet post. ' .
         <?php
         
         echo '<p>Name<span style="font-size:x-small;color:FF0000">*</span>: ';
-        echo '<input type="name" name="name" value="' . $petPost->get_pet_name() . '">';
+        echo '<input type="name" name="name" value="' . $adopter->get_name() . '">';
         echo '<p>Phone Number<span style="font-size:x-small;color:FF0000">*</span>: ';
-        echo '<input type="phone" name="phone">';
+        echo '<input type="phone" name="phone" value="' . $adopter->get_phone() . '">';
         echo '<p>Email Address<span style="font-size:x-small;color:FF0000">*</span>: ';
-        echo '<input type="email" name="email">';
+        echo '<input type="email" name="email" value="' . $adopter->get_email() . '">';
         echo '<p>Pet Name<span style="font-size:x-small;color:FF0000">*</span>: ';
         echo '<input type="pet_name" name="pet_name" value="' . $petPost->get_pet_name() . '">';
         echo '<p>Pet Type<span style="font-size:x-small;color:FF0000">*</span>: ';

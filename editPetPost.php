@@ -14,13 +14,14 @@
 session_start();
 session_cache_expire(30);
 //include_once('database/dbPersons.php');
-#include_once('database/dbAdopter.php');
+include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
 //include_once('domain/Person.php');
 include_once('domain/PetPost.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
 $petPost = retrieve_petpost_by_petid($id);
+$adopter = retrieve_adopter_by_id($petPost->get_owner_id());
     /*$person = retrieve_person($id);
     if (!$person) { // try again by changing blanks to _ in id
         $id = str_replace(" ","_",$_GET["id"]);
