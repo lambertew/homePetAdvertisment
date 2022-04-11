@@ -30,7 +30,6 @@ session_cache_expire(30);
                 include_once('database/dbinfo.php');
                 include_once('dbPetPost.php');
                 include_once('petPost.php');
-                $pet = retrieve_petpost_by_petname("Emma");
 
                 date_default_timezone_set('America/New_York');
                 if ($_SESSION['access_level'] == 2) {
@@ -41,9 +40,13 @@ session_cache_expire(30);
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
                 
+                $pet = new_highlights();
                 echo $pet[0]->get_pet_name();
                 echo petPostTemplate($pet[0], "Featured Pet");
-
+                
+                $ppID = $pet[0]->get_id();
+                $r = update_highlights($ppID);
+                echo $r;
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->

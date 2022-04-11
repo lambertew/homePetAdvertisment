@@ -98,7 +98,8 @@ function make_a_petpost($result_row) {
         $result_row['petType'],
         $result_row['petStory'],
         $result_row['petPicture'],
-        $result_row['approved']);
+        $result_row['approved'],
+        $result_row['numHighlight']);
     return $thePetPost;
 }
 
@@ -125,6 +126,39 @@ function update_approval($id)
         return false;
     }
     $query = 'UPDATE dbpetpost SET approved = 1 WHERE id = "' . $id . '"';
+    $result = mysqli_query($con,$query);
+    mysqli_close($con);
+    return true;
+}
+
+function new_highlights()
+{
+    $petposts = array();
+    $con=connect();
+    $query = 'SELECT * FROM dbpetpost ORDER BY numHighlight LIMIT 1';
+    $result = mysqli_query($con, $query);
+    if (!$result)
+    {
+        return null;
+    }
+    while ($result_row = mysqli_fetch_assoc($result)) {
+        $the_petpost = make_a_petpost($result_row);
+        $petposts[] = $the_petpost;
+    }
+    mysqli_close($con);
+    return $petposts;
+}
+
+function update_highlights($id)
+{
+    $con=connect();
+    $query = 'SELECT * FROM dbpetpost WHERE id = "' . $id . '"';
+    $result = mysqli_query($con,$query);
+    if ($result == null || mysqli_num_rows($result) == 0) {
+        mysqli_close($con);
+        return false;
+    }
+    $query = 'UPDATE dbpetpost SET numHighlight = numHighlight + 1 WHERE id = "' . $id . '"';
     $result = mysqli_query($con,$query);
     mysqli_close($con);
     return true;
