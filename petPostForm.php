@@ -21,11 +21,11 @@ include_once('domain/PetPost.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
 if ($id == 'new') {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null);
+    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
     /*$person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
                     null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");*/
 } else {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null);
+    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
     /*$person = retrieve_person($id);
     if (!$person) { // try again by changing blanks to _ in id
         $id = str_replace(" ","_",$_GET["id"]);
