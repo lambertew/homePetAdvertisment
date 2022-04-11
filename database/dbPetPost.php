@@ -132,9 +132,15 @@ function update_approval($id)
 
 function next_id() {
     $con=connect();
-    $query = 'SELECT MAX(id) AS next_id FROM dbpetpost';
-    $result = mysqli_query($con,$query);
-    $the_id = $result + 1;
-    return $the_id;
+    $query = 'SELECT MAX(id) FROM dbpetpost';
+    $result = mysqli_query($con,$query, MYSQLI_USE_RESULT);
+    if ($result) {
+        $row = mysqli_fetch_row($result);
+        $the_id = $row[0] + 1;
+        return $the_id;
+    } else {
+        $the_id = 0;
+        return $the_id;
+    }
 }
 ?>

@@ -54,10 +54,13 @@ $petpost = new PetPost(101, 0, null, null, null, null, 0);
                     //used for url path in linking user back to edit form
                     //$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 
-                    $newpetpost = new PetPost(rand(5, 1000), 0, $petName, $petType, $petStory, $petPicture, 0);
+                    $newpetpost = new PetPost(next_id(), 0, $petName, $petType, $petStory, $petPicture, 0);
+                    //echo($newpetpost->get_id());
+
                     add_petpost($newpetpost);
                     include('petPostForm.inc');
                     //echo("Post successfully submitted for approval");
+                    echo($newpetpost->get_id());
                     //process_form($id,$petPost);
                 }
                 $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
