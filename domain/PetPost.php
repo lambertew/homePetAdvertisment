@@ -21,12 +21,13 @@ class PetPost {
     private $petStory;  // short story as a string
     private $petPicture;  // image of pet
     private $approved;
+    private $numHighlight;
 
     /*
      * makes a pet post object.  from either the db or from the generating form in edit shifts
      */
 
-    function __construct($i, $oi, $pn, $pt, $ps, $pp, $a) {
+    function __construct($i, $oi, $pn, $pt, $ps, $pp, $a, $nh) {
         $this->id = $i;
         $this->owner_id = $oi;
         $this->petName = $pn;
@@ -34,7 +35,7 @@ class PetPost {
         $this->petStory = $ps;
         $this->petPicture = $pp;
         $this->approved = $a;
-        
+        $this->numHighlight = $nh;
     }
 
     function get_id() {
@@ -79,6 +80,16 @@ class PetPost {
 
     function set_pet_picture($pet_picture) {
         $this->petPicture = $pet_picture;
+    }
+
+    function set_numHighlight($nh)
+    {
+        $this->numHighlight = $nh;
+    }
+
+    function get_numHighlight()
+    {
+        return $this->numHighlight;
     }
 }
 
