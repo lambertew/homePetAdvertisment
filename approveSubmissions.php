@@ -3,6 +3,7 @@ session_start();
 session_cache_expire(30);
 include_once('database/dbPetPost.php');
 include_once('domain/PetPost.php');
+include_once('petPost.php');
 ?>
 
 <html>
@@ -31,6 +32,7 @@ include_once('domain/PetPost.php');
 		            $pettype = $petpost->get_pet_type();
 		            $petstory = $petpost->get_pet_story();
 		            $petpicture = $petpost->get_pet_picture();
+                    petPostTemplate($petpost, "Post Pending Approval");
                     include('approveSubmissionsForm.inc');
                 }
                 else {
