@@ -27,12 +27,11 @@ session_cache_expire(30);
                 <?PHP
                 include_once('database/dbPersons.php');
                 include_once('domain/Person.php');
-                include_once('database/dbLog.php');
-                include_once('domain/Shift.php');
-                include_once('database/dbShifts.php');
+                include_once('database/dbinfo.php');
+                include_once('dbPetPost.php');
+                include_once('petPost.php');
+
                 date_default_timezone_set('America/New_York');
-             //   echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
-            //    fix_all_birthdays();
                 if ($_SESSION['access_level'] == 2) {
                     $person = retrieve_person($_SESSION['_id']);
                     echo "<p>Welcome, " . $person->get_first_name() . ", to the SPCA!";
@@ -40,12 +39,14 @@ session_cache_expire(30);
                 else 
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
-
-                $img = 'images/emma.jpg';
-                $content = 'this is some content';
-                include('petPost.php');
-                echo petPostTemplate($img, $content);
                 
+                $pet = new_highlights();
+                echo $pet[0]->get_pet_name();
+                echo petPostTemplate($pet[0], "Featured Pet");
+                
+                $ppID = $pet[0]->get_id();
+                $r = update_highlights($ppID);
+                echo $r;
                 ?>
 
                 <!-- your main page data goes here. This is the place to enter content -->

@@ -96,7 +96,6 @@
 	            echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
 	        }
         // }
-        
     //}
 ?>
 </div>
