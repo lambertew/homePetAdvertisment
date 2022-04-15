@@ -44,6 +44,8 @@ session_cache_expire(30);
                 echo $pet[0]->get_pet_name();
                 echo petPostTemplate($pet[0], "Featured Pet");
                 
+                // echo file_get_contents('slideshow.html');
+
                 $ppID = $pet[0]->get_id();
                 $r = update_highlights($ppID);
                 echo $r;
