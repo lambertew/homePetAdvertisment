@@ -36,7 +36,8 @@ function add_petpost($petpost) {
                 $petpost->get_pet_type() . '","' .
                 $petpost->get_pet_story() . '","' .
                 $petpost->get_pet_picture() . '","' .
-                $petpost->get_approved() .
+                $petpost->get_approved() . '","' .
+                $petpost->get_numHighlight() .
                 '");');							
         mysqli_close($con);
         return true;
