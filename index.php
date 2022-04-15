@@ -30,6 +30,7 @@ session_cache_expire(30);
                 include_once('database/dbinfo.php');
                 include_once('dbPetPost.php');
                 include_once('petPost.php');
+                include_once('slideshow.php');
 
                 date_default_timezone_set('America/New_York');
                 if ($_SESSION['access_level'] == 2) {
@@ -42,9 +43,9 @@ session_cache_expire(30);
                 
                 $pet = new_highlights();
                 echo $pet[0]->get_pet_name();
-                echo petPostTemplate($pet[0], "Featured Pet");
-                
-                // echo file_get_contents('slideshow.html');
+                echo $pet[1]->get_pet_name();
+                echo $pet[2]->get_pet_name();   
+                echo showSlides();
 
                 $ppID = $pet[0]->get_id();
                 $r = update_highlights($ppID);
