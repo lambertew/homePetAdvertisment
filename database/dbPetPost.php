@@ -204,6 +204,20 @@ function update_approval($id)
     return true;
 }
 
+function next_id() {
+    $con=connect();
+    $query = 'SELECT MAX(id) FROM dbpetpost';
+    $result = mysqli_query($con,$query, MYSQLI_USE_RESULT);
+    if ($result) {
+        $row = mysqli_fetch_row($result);
+        $the_id = $row[0] + 1;
+        return $the_id;
+    } else {
+        $the_id = 0;
+        return $the_id;
+    }
+}
+
 function new_highlights()
 {
     $petposts = array();
