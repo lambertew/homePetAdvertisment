@@ -30,6 +30,32 @@ function retrieve_adopter_by_id ($id) {
     return $adopter;
 }
 
+function edit_user_info ($adopter) {
+    $adopter_id = $adopter->get_id();
+    $adopter_name = $adopter->get_name();
+    $adopter_phone = $adopter->get_phone();
+    $adopter_email = $adopter->get_email();
+    
+    $con=connect();
+    $query = 'UPDATE dbadopter SET name="' . $adopter_name . '" WHERE id = "' . $adopter_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        return false;
+    }
+    $query = 'UPDATE dbadopter SET phone="' . $adopter_phone . '" WHERE id = "' . $adopter_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        return false;
+    }
+    $query = 'UPDATE dbadopter SET email="' . $adopter_email . '" WHERE id = "' . $adopter_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        return false;
+    }
+    mysqli_close($con);
+    return true;
+}
+
 function create_adopter ($result_row) {
     $adopter = new Adopter(
         $result_row['id'],

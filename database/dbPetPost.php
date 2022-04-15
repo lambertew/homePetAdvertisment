@@ -59,6 +59,46 @@ function remove_petpost($id) {
     return true;
 }
 
+function edit_petpost($petpost) {
+    $pet_id = $petpost->get_id();
+    $new_pet_name = $petpost->get_pet_name();
+    $new_pet_type = $petpost->get_pet_type();
+    $new_pet_story = $petpost->get_pet_story();
+    $new_pet_picture = $petpost->get_pet_picture();
+    
+    $con=connect();
+    $query = 'UPDATE dbpetpost SET petName="' . $new_pet_name . '" WHERE id = "' . $pet_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        mysqli_rollback();
+        mysqli_close($con);
+        return false;
+    }
+    $query = 'UPDATE dbpetpost SET petType="' . $new_pet_type . '" WHERE id = "' . $pet_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        mysqli_rollback();
+        mysqli_close($con);
+        return false;
+    }
+    $query = 'UPDATE dbpetpost SET petStory="' . $new_pet_story . '" WHERE id = "' . $pet_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        mysqli_rollback();
+        mysqli_close($con);
+        return false;
+    }
+    $query = 'UPDATE dbpetpost SET petPicture="' . $new_pet_picture . '" WHERE id = "' . $pet_id .'"';
+    $result = mysqli_query($con,$query);
+    if (!$result) {
+        mysqli_rollback();
+        mysqli_close($con);
+        return false;
+    }
+    mysqli_close($con);
+    return true;
+}
+
 function retrieve_petpost_by_petid ($id) {
     $con=connect();
     $query = 'SELECT * FROM dbpetpost WHERE id = "' . $id . '"';
@@ -68,6 +108,7 @@ function retrieve_petpost_by_petid ($id) {
     }
     $result_row = mysqli_fetch_assoc($result);
     $the_petpost = make_a_petpost($result_row);
+    mysqli_close($con);
     return $the_petpost;
     
 }
@@ -82,6 +123,7 @@ function retrieve_petpost_by_petname ($name) {
         $the_petpost = make_a_petpost($result_row);
         $petposts[] = $the_petpost;
     }
+    mysqli_close($con);
     return $petposts;
 }
 
@@ -95,6 +137,7 @@ function retrieve_petpost_by_pettype ($pettype) {
         $the_petpost = make_a_petpost($result_row);
         $petposts[] = $the_petpost;
     }
+    mysqli_close($con);
     return $petposts;
 }
 
@@ -110,6 +153,7 @@ function retrieve_all_petposts() {
         $the_petpost = make_a_petpost($result_row);
         $petposts[] = $the_petpost;
     }
+    mysqli_close($con);
     return $petposts;
 }
     

@@ -37,7 +37,7 @@ include_once('domain/PetPost.php');
         	          		<br><img src="<?php echo htmlspecialchars($petpicture); ?>" alt="test" width="200" height="200"/>
         	            	<p style="text-align:center";><?php echo $petstory?></p>
         	          	</div>
-        	          	<p style="float:right;"><a href="editPetPost.php?id=<?php echo $petposts[$x]->get_id(); ?>">Edit</a></p>
+        	          	<p style="float:right;"><a href="editPetPostForm.php?id=<?php echo $petposts[$x]->get_id(); ?>">Edit</a></p>
         	         </fieldset>
         	         <?php
                 }
