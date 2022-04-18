@@ -12,34 +12,20 @@
  * 	@version 9/1/2008 revised 4/1/2012 revised 8/3/2015
  */
 session_start();
-session_cache_expire(30);
+//session_cache_expire(30);
 //include_once('database/dbPersons.php');
-//include_once('database/dbAdopter.php');
+include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
 //include_once('domain/Person.php');
+include_once('domain/Adopter.php');
 include_once('domain/PetPost.php');
 //include_once('database/dbApplicantScreenings.php');
 //include_once('domain/ApplicantScreening.php');
 include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
-if ($id == 'new') {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
-    /*$person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
-                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");*/
-} else {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
-    /*$person = retrieve_person($id);
-    if (!$person) { // try again by changing blanks to _ in id
-        $id = str_replace(" ","_",$_GET["id"]);
-        $person = retrieve_person($id);
-        if (!$person) {
-            echo('<p id="error">Error: there\'s no person with this id in the database</p>' . $id);
-            die();
-        }
-    }*/
-}
-#$petpost = new PetPost(101, 0, null, null, null, null, 0);
+$adopter = new Adopter(1001, null, null, null);
+$petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
 
 ?>
 <html>
@@ -57,12 +43,14 @@ if ($id == 'new') {
             <?PHP include('header.php'); ?>
             <div id="content">
                 <?PHP
-                if ($_POST['_form_submit'] != 1)
-                {
+                if ($_POST['_form_submit'] != 1) {
                     include('petPostForm.inc');
-                }
-                else if ($_POST['_form_submit'] == 1)
-                {
+                } else if ($_POST['_form_submit'] == 1) {
+                    $id = next_id();
+                    $owner_id = next_owner_id();
+                    $name = $_POST['name'];
+                    $phone = $_POST['phone'];
+                    $email = $_POST['email'];
                     $petName = $_POST['petName'];
                     $petType = $_POST['petType'];
                     $petStory = $_POST['petStory'];
@@ -70,13 +58,14 @@ if ($id == 'new') {
                     //used for url path in linking user back to edit form
                     //$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 
-                    $newpetpost = new PetPost(next_id(), 0, $petName, $petType, $petStory, $petPicture, 0);
+                    $newadopter = new Adopter($owner_id, $name, $phone, $email);
+                    $newpetpost = new PetPost($id, $owner_id, $petName, $petType, $petStory, $petPicture, 0, 0);
                     //echo($newpetpost->get_id());
 
+                    add_adopter($newadopter);
                     add_petpost($newpetpost);
                     include('petPostForm.inc');
-                    //echo("Post successfully submitted for approval");
-                    echo($newpetpost->get_id());
+                    //echo($newpetpost->get_id());
                     //process_form($id,$petPost);
                 }
                 $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
