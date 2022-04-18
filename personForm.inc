@@ -66,7 +66,6 @@ if ($_SESSION['access_level'] == 0) {
         }
         else echo '<p>Phone: '.phone_edit($person->get_phone());
         echo '<p>Email address<span style="font-size:x-small;color:FF0000">*</span>: '. '<input type="text" name="email" tabindex="10" value="'.$person->get_email().'">';
-        //echo ' Hit <input type="submit" value="submit" name="Submit Edits"> to associate '.$person->get_first_name().' with this screening.<br><br>';
 ?>
 
 
@@ -76,61 +75,8 @@ if ($_SESSION['access_level'] == 0) {
 </fieldset>
     <p>
         <?PHP
-        // if ($_SESSION['access_level']==2 && $person->get_status() == "applicant") {
-        //     echo "<fieldset>";
-        //     echo "<legend>Applicants only: </legend>";
-		// 	if ($_SESSION['access_level'] == 2) {
-        //     	$screeningType = $person->get_screening_type();
-        //         $screening = retrieve_dbApplicantScreenings($screeningType);
-        //         $screenings = getall_ApplicantScreenings();
-        //         echo('<p> Screening Type:&nbsp; <select name="screening_type">');
-        //         if ($person->get_screening_type() == "")
-        //             echo('<option value="" SELECTED></option>');
-        //         foreach ($screenings as $s) {
-        //             if ($s->get_status() == "published") {
-        //                 $t = $s->get_type();
-        //                 if ($screeningType == $t) {
-        //                     echo('<option value ="' . $t . '" SELECTED>' . $t . '</option>');
-        //                 } else {
-        //                     echo('<option value ="' . $t . '"> ' . $t . '</option>');
-        //                 }
-        //             }
-        //         }
-        //         echo('</select>&nbsp;');
-
-        //         // submit button that allows manager to associate person with applicant screening
-        //         //echo(' Hit <input type="submit" value="submit" name="Submit Edits"> to associate '.$person->get_first_name().' with this screening.<br><br>');
-
-        //         if ($screening) {
-        //             $step_array = $screening->get_steps();
-        //             $date_array = $person->get_screening_status();
-        //             $step_count = count($step_array);
-                
-        //         echo("<p><table>");
-        //         echo('<tr><td>Completion Date</td> <td>Step</td></tr>');
-        //         for ($i = 0; $i < $step_count; $i++) {
-        //             $j = $i + 1;
-        //             echo "<tr><td>";
-        //             echo('<tr><td><input type="text" id="screening_status" name="screening_status[]" value="'.$date_array[$i]. '" size="8" /></td>');
-        //             echo('</td><td>' . $j . '. ' . $step_array[$i] . '</td></tr>');
-        //         }
-        //         echo('</table>');
-        //         }
-		// 	}    
-        //     echo "</fieldset>";
-        // }
         echo('<input type="hidden" name="password" value="' . $person->get_password() . ')">');
         echo('<input type="hidden" name="_submit_check" value="1"><p>');
-        // if ($_SESSION['access_level'] == 0)
-        //     echo('By hitting <input type="submit" value="Submit" name="Submit Edits">, I understand the importance of this volunteer 
-        //     		commitment and have answered the application questions honestly and to the best of my knowledge.<br /><br />');
-        // else
-            echo('Hit <input type="submit" value="Submit" name="Submit Edits"> to create this admin account.<br /><br />');
-        // if ($id != 'new' && $_SESSION['access_level'] >= 2) {
-        //     echo ('<input type="checkbox" name="deleteMe" value="DELETE"> Check this box and then hit ' .
-        //     '<input type="submit" value="Delete" name="Delete Entry"> to delete this entry. <br />' .
-        //     '<input type="checkbox" name="reset_pass" value="RESET"> Check this box and then hit ' .
-        //     '<input type="submit" value="Reset Password" name="Reset Password"> to reset this person\'s password.</p>');
-        // }
+        echo('Hit <input type="submit" value="Submit" name="Submit Edits"> to create this admin account.<br /><br />');
         ?>
 </form>

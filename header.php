@@ -21,13 +21,6 @@
 <div align="center" id="navigationLinks">
 
     <?PHP
-    //Log-in security
-    //If they aren't logged in, display our log-in form.
-    //if (!isset($_SESSION['logged_in'])) {
-    	
-        //include('login_form.php');
-        //die();
-    //} else if ($_SESSION['logged_in']) {
 
         /*         * Set our permission array.
          * anything a guest can do, a volunteer and manager can also do
@@ -74,14 +67,12 @@
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">home</a>');
 	            echo(' | <a href="' . $path . 'about.php">about</a>');
-	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
                 echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
                 echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
 	            echo(' | <a href="' . $path . 'login_form.php">login</a>');
 	        } else {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');
-	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
                 echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
 	            echo(' | <a href="' . $path . 'editUserInfo.php">Edit User Information</a>');

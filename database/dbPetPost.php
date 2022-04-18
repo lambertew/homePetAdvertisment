@@ -159,11 +159,7 @@ function retrieve_all_petposts() {
 }
     
 function make_a_petpost($result_row) {
-    /*
-     ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
-     $screening_type, $screening_status, $st, $emp, $pos, $hours, $comm, $mot, $spe,
-     $convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass)
-     */
+
     $thePetPost = new PetPost(
         $result_row['id'],
         $result_row['owner_id'],
