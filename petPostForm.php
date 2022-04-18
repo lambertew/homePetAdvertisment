@@ -12,7 +12,7 @@
  * 	@version 9/1/2008 revised 4/1/2012 revised 8/3/2015
  */
 session_start();
-//session_cache_expire(30);
+session_cache_expire(30);
 //include_once('database/dbPersons.php');
 //include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
@@ -23,7 +23,23 @@ include_once('domain/PetPost.php');
 include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
-$petpost = new PetPost(101, 0, null, null, null, null, 0);
+if ($id == 'new') {
+    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
+    /*$person = new Person('new', 'applicant', $_SESSION['venue'], null, null, null, null, null, null, null, null, null, "applicant", 
+                    null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, "");*/
+} else {
+    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
+    /*$person = retrieve_person($id);
+    if (!$person) { // try again by changing blanks to _ in id
+        $id = str_replace(" ","_",$_GET["id"]);
+        $person = retrieve_person($id);
+        if (!$person) {
+            echo('<p id="error">Error: there\'s no person with this id in the database</p>' . $id);
+            die();
+        }
+    }*/
+}
+#$petpost = new PetPost(101, 0, null, null, null, null, 0);
 
 ?>
 <html>

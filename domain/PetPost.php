@@ -65,6 +65,11 @@ class PetPost {
     function get_approved() {
         return $this->approved;
     }
+    
+    function get_numHighlight()
+    {
+        return $this->numHighlight;
+    }
 
     function set_pet_name($pet_name) {
         $this->petName = $pet_name;
@@ -86,11 +91,5 @@ class PetPost {
     {
         $this->numHighlight = $nh;
     }
-
-    function get_numHighlight()
-    {
-        return $this->numHighlight;
-    }
 }
-
 ?>

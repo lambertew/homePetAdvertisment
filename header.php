@@ -90,6 +90,7 @@
 	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
                 echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
+	            echo(' | <a href="' . $path . 'editUserInfo.php">Edit User Information</a>');
 	            echo(' | <a href="' . $path . 'personEdit.php?id=' . 'new' . '">Create New Admin</a>');
                 echo(' | <a href="' . $path . 'resetAuth.php">Reset Password</a>');
 	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');

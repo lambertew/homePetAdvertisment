@@ -70,7 +70,6 @@ CREATE TABLE `dbPetPost` (
 
 INSERT INTO `dbPersons` (`id`, `first_name`, `last_name`, `phone`, `email`, `password`) VALUES
 ('Bob8888888888', 'Bob', 'Robertson', '8888888888', 'wackpassword@fake.com', 'bogus_pass'),
-('Ethan5407355011', 'Ethan', 'Lambert', '5407355011', 'lambertew@yahoo.com', '5409d8ac4d6e3eddc773e841a3182562'),
 ('Admin7037806282', 'Admin', 'Jones', '7037806282', 'admin@yahoo.com', 'be6bef2c7a57bead38826deed4077d03');
 
 INSERT INTO `dbAdopter` (`id`,`name`, `phone`, `email`) VALUES
