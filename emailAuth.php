@@ -1,4 +1,3 @@
-
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -124,7 +123,3 @@ include_once('domain/Person.php');
         </div>
     </body>
 </html>
-
-
-
-
