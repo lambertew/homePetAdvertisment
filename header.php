@@ -70,12 +70,6 @@
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
         
-        //they're logged in and session variables are set.
-        // if ($_SESSION['venue'] =="") { 
-        // 	echo(' <a href="' . $path . 'personEdit.php?id=' . 'new' . '">apply</a>');
-        // 	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
-        // }
-        // else {
         	echo " <br><b>"."SPCA"."</b> ";
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">home</a>');
@@ -96,8 +90,6 @@
 	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
 	            echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
 	        }
-        // }
-    //}
 ?>
 </div>
 <!-- End Header -->
