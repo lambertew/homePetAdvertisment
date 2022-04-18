@@ -92,5 +92,4 @@ class PetPost {
         $this->numHighlight = $nh;
     }
 }
-
 ?>
