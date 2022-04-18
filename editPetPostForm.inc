@@ -36,7 +36,7 @@ echo('Fill in the fields that you want to edit' .
     </fieldset>
     <p>
         <?php
-        echo('Hit <input type="submit" value="Submit" name="Save Changes"> to finalize your edits.<br /><br />');
+        echo('Hit <input type="submit" value="Save Changes" name="submit"> to finalize your edits.<br /><br />');
         ?>
     </p>
 </form>

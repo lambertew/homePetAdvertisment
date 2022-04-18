@@ -87,7 +87,6 @@
 	        } else {
 	        	echo('<a href="' . $path . 'index.php">home</a>');
 	        	echo(' | <a href="' . $path . 'about.php">about</a>');
-	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
                 echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
 	            echo(' | <a href="' . $path . 'editUserInfo.php">Edit User Information</a>');
