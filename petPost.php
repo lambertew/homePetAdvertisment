@@ -25,30 +25,34 @@ function petPostTemplate( $pet, $postDesc ){
   // }
 
   ob_start();
-  echo '<fieldset>
-      <legend>'.$postDesc.'</legend>
-        <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
-        <tr>
-          <td rel="stylesheet" href="styles.css">
-            <img src="'.$petpicture.'" width="auto"; height = "500"; margin = "auto"; />
-          </td>
-          <td class="td">
-            <table>
-              <tr>
-                <td>
-                '.$petname.', '.$pettype.'
-              </td>
-            </tr>
-              <tr>
-                <td>
-                '.$petstory.'
-              </td>
-            </tr>
-            </table>
-          </td>
-        </tr>
-      </table>  
-      </legend>
-  </fieldset>';
+  echo '
+    <div class="mySlides fade">
+      <fieldset>
+        <legend>'.$postDesc.'</legend>
+          <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
+          <tr>
+            <td rel="stylesheet" href="styles.css">
+              <img src="'.$petpicture.'" width="auto"; height = "500"; margin = "auto"; />
+            </td>
+            <td class="td">
+              <table>
+                <tr>
+                  <td>
+                  '.$petname.', '.$pettype.'
+                </td>
+              </tr>
+                <tr>
+                  <td>
+                  '.$petstory.'
+                </td>
+              </tr>
+              </table>
+            </td>
+          </tr>
+        </table>  
+        </legend>
+    </fieldset>
+    </div>'
+    ;
 }
 ?>
