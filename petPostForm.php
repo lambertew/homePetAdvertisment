@@ -59,11 +59,14 @@ $petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
                     //$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 
                     $newadopter = new Adopter($owner_id, $name, $phone, $email);
-                    $newpetpost = new PetPost($id, $owner_id, $petName, $petType, $petStory, $petPicture, 0, 0);
-                    //echo($newpetpost->get_id());
-
-                    add_adopter($newadopter);
-                    add_petpost($newpetpost);
+                    $adopterid = add_adopter($newadopter);
+                    if ($adopterid != $owner_id) {
+                        //echo("Entered if statement!");
+                    	$neweradopter = new Adopter($adopterid, $name, $phone, $email);
+                    	edit_user_info($neweradopter);
+                    }
+                    $newpetpost = new PetPost($id, $adopterid, $petName, $petType, $petStory, $petPicture, 0, 0);
+                    $addpost = add_petpost($newpetpost);
                     include('petPostForm.inc');
                     //echo($newpetpost->get_id());
                     //process_form($id,$petPost);
