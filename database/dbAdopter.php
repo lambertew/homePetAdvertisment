@@ -21,7 +21,7 @@ function add_adopter($adopter) {
     #if (!$person instanceof Person)
     #    die("Error: add_person type mismatch");
     $con=connect();
-    $query = "SELECT * FROM dbadopter WHERE id = '" . $adopter->get_id() . "'";
+    $query = "SELECT * FROM dbadopter WHERE name = '" . $adopter->get_name() . "' AND phone = '" . $adopter->get_phone() . "'";
     $result = mysqli_query($con,$query);
     //if there's no entry for this id, add it
     if ($result == null || mysqli_num_rows($result) == 0) {
@@ -32,10 +32,14 @@ function add_adopter($adopter) {
                 $adopter->get_email() .
                 '");');                         
         mysqli_close($con);
-        return true;
+        return $adopter->get_id();
     }
+    $query2 = "SELECT id FROM dbadopter WHERE name = '" . $adopter->get_name() . "' AND phone = '" . $adopter->get_phone() . "'";
+    $result2 = mysqli_query($con,$query2, MYSQLI_USE_RESULT);
+    $row = mysqli_fetch_row($result2);
+    $the_id = $row[0];
     mysqli_close($con);
-    return false;
+    return $the_id;
 }
 
 function retrieve_adopter_by_id ($id) {
