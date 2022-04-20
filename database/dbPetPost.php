@@ -227,7 +227,7 @@ function new_highlights()
 {
     $petposts = array();
     $con=connect();
-    $query = 'SELECT * FROM dbpetpost ORDER BY numHighlight LIMIT 3';
+    $query = 'SELECT * FROM dbpetpost WHERE approved = 1 ORDER BY numHighlight LIMIT 3';
     $result = mysqli_query($con, $query);
     if (!$result)
     {
