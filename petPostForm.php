@@ -13,14 +13,10 @@
  */
 session_start();
 //session_cache_expire(30);
-//include_once('database/dbPersons.php');
 include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
-//include_once('domain/Person.php');
 include_once('domain/Adopter.php');
 include_once('domain/PetPost.php');
-//include_once('database/dbApplicantScreenings.php');
-//include_once('domain/ApplicantScreening.php');
 include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
@@ -66,7 +62,12 @@ $petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
                     	edit_user_info($neweradopter);
                     }
                     $newpetpost = new PetPost($id, $adopterid, $petName, $petType, $petStory, $petPicture, 0, 0);
-                    $addpost = add_petpost($newpetpost);
+                    $postid = add_petpost($newpetpost);
+                    if ($postid != $id) {
+                    	//echo("Entered if statement!");
+                    	$newerpetpost = new PetPost($postid, $adopterid, $petName, $petType, $petStory, $petPicture, 0, 0);
+                    	edit_petpost($newerpetpost);
+                    }
                     include('petPostForm.inc');
                     //echo($newpetpost->get_id());
                     //process_form($id,$petPost);
