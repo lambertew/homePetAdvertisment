@@ -73,6 +73,5 @@
         }
     }
     ?>
-    <?PHP include('footer.inc'); ?>
 </div>
 </div>

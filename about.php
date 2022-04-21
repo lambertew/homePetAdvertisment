@@ -28,7 +28,6 @@
 				<p>This website was created by Jacob Weisbeck, Paul Narkinsky, Zachary Brennan, and Ethan Lambert for use by the SPCA.</p>
 				<p>		
 			</div>
-		<?PHP include('footer.inc');?>
 		</div>
 	</body>
 </html>

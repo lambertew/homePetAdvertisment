@@ -43,7 +43,6 @@ session_cache_expire(30);
                 ?>
                 <p>You are now logged out of SPCA.</p>
             </div>
-            <?PHP include('footer.inc'); ?>
         </div>
     </body>
 </html>
