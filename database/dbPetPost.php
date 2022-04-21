@@ -26,7 +26,7 @@ function add_petpost($petpost) {
     #if (!$person instanceof Person)
     #    die("Error: add_person type mismatch");
     $con=connect();
-    $query = "SELECT * FROM dbpetpost WHERE id = '" . $petpost->get_id() . "'";
+    $query = "SELECT * FROM dbpetpost WHERE owner_id = '" . $petpost->get_owner_id() . "' AND petName = '" . $petpost->get_pet_name() ."' AND petType = '" . $petpost->get_pet_type() . "'";
     $result = mysqli_query($con,$query);
     //if there's no entry for this id, add it
     if ($result == null || mysqli_num_rows($result) == 0) {
@@ -41,10 +41,14 @@ function add_petpost($petpost) {
                 $petpost->get_numHighlight() .
                 '");');							
         mysqli_close($con);
-        return true;
+        return $petpost->get_id();
     }
+    $query2 = "SELECT id FROM dbpetpost WHERE owner_id = '" . $petpost->get_owner_id() . "' AND petName = '" . $petpost->get_pet_name() ."' AND petType = '" . $petpost->get_pet_type() . "'";
+    $result2 = mysqli_query($con,$query2, MYSQLI_USE_RESULT);
+    $row = mysqli_fetch_row($result2);
+    $the_id = $row[0];
     mysqli_close($con);
-    return false;
+    return $the_id;
 }
 
 function remove_petpost($id) {
@@ -160,7 +164,11 @@ function retrieve_all_petposts() {
 }
     
 function make_a_petpost($result_row) {
-
+    /*
+     ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t,
+     $screening_type, $screening_status, $st, $emp, $pos, $hours, $comm, $mot, $spe,
+     $convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass)
+     */
     $thePetPost = new PetPost(
         $result_row['id'],
         $result_row['owner_id'],
@@ -220,7 +228,7 @@ function new_highlights()
 {
     $petposts = array();
     $con=connect();
-    $query = 'SELECT * FROM dbpetpost ORDER BY numHighlight LIMIT 1';
+    $query = 'SELECT * FROM dbpetpost WHERE approved = 1 ORDER BY numHighlight LIMIT 3';
     $result = mysqli_query($con, $query);
     if (!$result)
     {
@@ -249,3 +257,4 @@ function update_highlights($id)
     return true;
 }
 ?>
+

@@ -17,6 +17,31 @@
 include_once('dbinfo.php');
 include_once(dirname(__FILE__).'/../domain/Adopter.php');
 
+function add_adopter($adopter) {
+    #if (!$person instanceof Person)
+    #    die("Error: add_person type mismatch");
+    $con=connect();
+    $query = "SELECT * FROM dbadopter WHERE name = '" . $adopter->get_name() . "' AND phone = '" . $adopter->get_phone() . "'";
+    $result = mysqli_query($con,$query);
+    //if there's no entry for this id, add it
+    if ($result == null || mysqli_num_rows($result) == 0) {
+        mysqli_query($con,'INSERT INTO dbadopter VALUES("' .
+                $adopter->get_id() . '","' .
+                $adopter->get_name() . '","' .
+                $adopter->get_phone() . '","' .
+                $adopter->get_email() .
+                '");');                         
+        mysqli_close($con);
+        return $adopter->get_id();
+    }
+    $query2 = "SELECT id FROM dbadopter WHERE name = '" . $adopter->get_name() . "' AND phone = '" . $adopter->get_phone() . "'";
+    $result2 = mysqli_query($con,$query2, MYSQLI_USE_RESULT);
+    $row = mysqli_fetch_row($result2);
+    $the_id = $row[0];
+    mysqli_close($con);
+    return $the_id;
+}
+
 function retrieve_adopter_by_id ($id) {
     $con=connect();
     $query = 'SELECT * FROM dbadopter WHERE id="' . $id . '" LIMIT 1';
@@ -65,5 +90,18 @@ function create_adopter ($result_row) {
     return $adopter;
 }
 
+function next_owner_id() {
+    $con=connect();
+    $query = 'SELECT MAX(id) FROM dbadopter';
+    $result = mysqli_query($con,$query, MYSQLI_USE_RESULT);
+    if ($result) {
+        $row = mysqli_fetch_row($result);
+        $the_id = $row[0] + 1;
+        return $the_id;
+    } else {
+        $the_id = 0;
+        return $the_id;
+    }
+}
 
 ?>

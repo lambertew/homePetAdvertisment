@@ -12,16 +12,17 @@
  * 	@version 9/1/2008 revised 4/1/2012 revised 8/3/2015
  */
 session_start();
-session_cache_expire(30);
+
+//session_cache_expire(30);
+include_once('database/dbAdopter.php');
 include_once('database/dbPetPost.php');
+include_once('domain/Adopter.php');
 include_once('domain/PetPost.php');
+include_once('database/dbLog.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
-if ($id == 'new') {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
-} else {
-    $petPost = new PetPost('new', 'p', 'e', 'pn', 'pt', 'ps', null, 0);
-}
+$adopter = new Adopter(1001, null, null, null);
+$petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
 
 ?>
 <html>
@@ -39,21 +40,38 @@ if ($id == 'new') {
             <?PHP include('header.php'); ?>
             <div id="content">
                 <?PHP
-                if ($_POST['_form_submit'] != 1)
-                {
+                if ($_POST['_form_submit'] != 1) {
                     include('petPostForm.inc');
-                }
-                else if ($_POST['_form_submit'] == 1)
-                {
+                } else if ($_POST['_form_submit'] == 1) {
+                    $id = next_id();
+                    $owner_id = next_owner_id();
+                    $name = $_POST['name'];
+                    $phone = $_POST['phone'];
+                    $email = $_POST['email'];
                     $petName = $_POST['petName'];
                     $petType = $_POST['petType'];
                     $petStory = $_POST['petStory'];
                     $petPicture = $_POST['petPicture'];
-                    $newpetpost = new PetPost(next_id(), 0, $petName, $petType, $petStory, $petPicture, 0);
+                    //used for url path in linking user back to edit form
+                    //$path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 
-                    add_petpost($newpetpost);
+                    $newadopter = new Adopter($owner_id, $name, $phone, $email);
+                    $adopterid = add_adopter($newadopter);
+                    if ($adopterid != $owner_id) {
+                        //echo("Entered if statement!");
+                    	$neweradopter = new Adopter($adopterid, $name, $phone, $email);
+                    	edit_user_info($neweradopter);
+                    }
+                    $newpetpost = new PetPost($id, $adopterid, $petName, $petType, $petStory, $petPicture, 0, 0);
+                    $postid = add_petpost($newpetpost);
+                    if ($postid != $id) {
+                    	//echo("Entered if statement!");
+                    	$newerpetpost = new PetPost($postid, $adopterid, $petName, $petType, $petStory, $petPicture, 0, 0);
+                    	edit_petpost($newerpetpost);
+                    }
                     include('petPostForm.inc');
-                    echo($newpetpost->get_id());
+                    //echo($newpetpost->get_id());
+                    //process_form($id,$petPost);
                 }
                 $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
                         echo "</div>";
