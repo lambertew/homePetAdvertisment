@@ -16,7 +16,7 @@ echo('Fill in all the required fields to create a new pet post. ' .
         echo '<p>Pet Type<span style="font-size:x-small;color:FF0000">*</span>:<input type="text" name="petType">';
         echo '<p>Pet Story<span style="font-size:x-small;color:FF0000">*</span>:<input type="text" name="petStory">';
         echo '<p>Picture of Pet<span style="font-size:x-small;color:FF0000">*</span>:<input type="text" name="petPicture">';
-        //echo('Hit <input type="submit" value="Submit" name="Submit Pet Post"> to submit your post.<br /><br />');
+        //echo('Hit <input type="submit" value="Submit" name="Submit Pet Post"> to create your post.<br /><br />');
         ?>
         <script src="lib/jquery-1.9.1.js"></script>
         <script src="lib/jquery-ui.js"></script>
@@ -24,7 +24,7 @@ echo('Fill in all the required fields to create a new pet post. ' .
     
     <p>
         <?php
-        echo('Hit <input type="submit" value="Submit" name="Submit Pet Post"> to submit your post.<br /><br />');
+        echo('Hit <input type="submit" value="Submit" name="Submit Pet Post"> to create your post.<br /><br />');
         ?>
     </p>
 </form>

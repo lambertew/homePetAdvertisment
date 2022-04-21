@@ -43,9 +43,6 @@ if (!$person) { // try again by changing blanks to _ in id
                     if ($errors) {
                         // display the errors and the form to fix
                         show_errors($errors);
-                        // $person = new Person($person->get_first_name(), $_POST['last_name'], $person->get_phone(), 
-                        // 		        $_POST['email'], 
-                        //                 $_POST['old_pass']);
                         include('resetPasswordForm.inc');
                     }
                     // this was a successful form submission; update the database and exit

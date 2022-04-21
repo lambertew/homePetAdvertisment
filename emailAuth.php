@@ -1,4 +1,3 @@
-
 <?php
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -12,16 +11,6 @@ session_start();
 session_cache_expire(30);
 include_once('database/dbPersons.php');
 include_once('domain/Person.php');
-// $id = str_replace("_"," ",$_GET["id"]);
-// $person = retrieve_person($_SESSION['_id']);
-// if (!$person) { // try again by changing blanks to _ in id
-//     $id = str_replace(" ","_",$_GET["id"]);
-//     $person = retrieve_person($id);
-//     if (!$person) {
-//         echo('<p id="error">Error: there\'s no person with this id in the database</p>' . $id);
-//         die();
-//     }
-// }
 ?>
 
 <html>
@@ -54,9 +43,6 @@ include_once('domain/Person.php');
                         echo('<ul>');
                         echo("<li><strong><font color=\"red\">Malformed Email!</font></strong></li>\n");
                         echo("</ul></div></p>");
-                        // $person = new Person($person->get_first_name(), $_POST['last_name'], $person->get_phone(), 
-                        // 		        $_POST['email'], 
-                        //                 $_POST['old_pass']);
                         include('emailAuthForm.inc');
                     }
                     // this was a successful form submission; update the database and exit
@@ -93,7 +79,6 @@ include_once('domain/Person.php');
                  */
                 function send_email($email) {
                     $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
-                    //echo 'Email ' . $email;
                     $mail = new PHPMailer(true);
                         
                         $mail->SMTPDebug = false;      
@@ -138,7 +123,3 @@ include_once('domain/Person.php');
         </div>
     </body>
 </html>
-
-
-
-

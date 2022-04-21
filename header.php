@@ -21,13 +21,6 @@
 <div align="center" id="navigationLinks">
 
     <?PHP
-    //Log-in security
-    //If they aren't logged in, display our log-in form.
-    //if (!isset($_SESSION['logged_in'])) {
-    	
-        //include('login_form.php');
-        //die();
-    //} else if ($_SESSION['logged_in']) {
 
         /*         * Set our permission array.
          * anything a guest can do, a volunteer and manager can also do
@@ -70,12 +63,6 @@
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
         
-        //they're logged in and session variables are set.
-        // if ($_SESSION['venue'] =="") { 
-        // 	echo(' <a href="' . $path . 'personEdit.php?id=' . 'new' . '">apply</a>');
-        // 	echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
-        // }
-        // else {
         	echo " <br><b>"."SPCA"."</b> ";
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">Home</a>');
@@ -94,8 +81,6 @@
 	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
 	            echo(' | <a href="' . $path . 'logout.php">Logout</a><br>');
 	        }
-        // }
-    //}
 ?>
 </div>
 <!-- End Header -->

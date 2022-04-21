@@ -1,3 +1,4 @@
+
 <?php
 /*
  * Copyright 2013 by Jerrick Hoang, Ivy Xing, Sam Roberts, James Cook, 
@@ -25,7 +26,7 @@ function add_petpost($petpost) {
     #if (!$person instanceof Person)
     #    die("Error: add_person type mismatch");
     $con=connect();
-    $query = "SELECT * FROM dbpetpost WHERE id = '" . $petpost->get_id() . "'";
+    $query = "SELECT * FROM dbpetpost WHERE owner_id = '" . $petpost->get_owner_id() . "' AND petName = '" . $petpost->get_pet_name() ."' AND petType = '" . $petpost->get_pet_type() . "'";
     $result = mysqli_query($con,$query);
     //if there's no entry for this id, add it
     if ($result == null || mysqli_num_rows($result) == 0) {
@@ -40,10 +41,14 @@ function add_petpost($petpost) {
                 $petpost->get_numHighlight() .
                 '");');							
         mysqli_close($con);
-        return true;
+        return $petpost->get_id();
     }
+    $query2 = "SELECT id FROM dbpetpost WHERE owner_id = '" . $petpost->get_owner_id() . "' AND petName = '" . $petpost->get_pet_name() ."' AND petType = '" . $petpost->get_pet_type() . "'";
+    $result2 = mysqli_query($con,$query2, MYSQLI_USE_RESULT);
+    $row = mysqli_fetch_row($result2);
+    $the_id = $row[0];
     mysqli_close($con);
-    return false;
+    return $the_id;
 }
 
 function remove_petpost($id) {
@@ -223,7 +228,7 @@ function new_highlights()
 {
     $petposts = array();
     $con=connect();
-    $query = 'SELECT * FROM dbpetpost ORDER BY numHighlight LIMIT 3';
+    $query = 'SELECT * FROM dbpetpost WHERE approved = 1 ORDER BY numHighlight LIMIT 3';
     $result = mysqli_query($con, $query);
     if (!$result)
     {
@@ -252,3 +257,4 @@ function update_highlights($id)
     return true;
 }
 ?>
+

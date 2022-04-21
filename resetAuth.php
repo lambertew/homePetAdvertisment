@@ -12,16 +12,6 @@ session_start();
 session_cache_expire(30);
 include_once('database/dbPersons.php');
 include_once('domain/Person.php');
-// $id = str_replace("_"," ",$_GET["id"]);
-// $person = retrieve_person($_SESSION['_id']);
-// if (!$person) { // try again by changing blanks to _ in id
-//     $id = str_replace(" ","_",$_GET["id"]);
-//     $person = retrieve_person($id);
-//     if (!$person) {
-//         echo('<p id="error">Error: there\'s no person with this id in the database</p>' . $id);
-//         die();
-//     }
-// }
 ?>
 
 <html>

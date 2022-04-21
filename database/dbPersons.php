@@ -31,36 +31,10 @@ function add_person($person) {
     if ($result == null || mysqli_num_rows($result) == 0) {
         mysqli_query($con,'INSERT INTO dbPersons VALUES("' .
                 $person->get_id() . '","' .
-                // $person->get_start_date() . '","' .
-                // $person->get_venue() . '","' .
                 $person->get_first_name() . '","' .
                 $person->get_last_name() . '","' .
-                // $person->get_address() . '","' .
-                // $person->get_city() . '","' .
-                // $person->get_state() . '","' .
-                // $person->get_zip() . '","' .
                 $person->get_phone() . '","' .
-                // $person->get_phone1type() . '","' .
-                // $person->get_phone2() . '","' .
-                // $person->get_phone2type() . '","' .
-                // $person->get_birthday() . '","' .
                 $person->get_email() . '","' .
-                // $person->get_employer() . '","' . 
-                // $person->get_position() . '","' . 
-                // $person->get_credithours() . '","' . 
-                // $person->get_howdidyouhear() . '","' . 
-                // $person->get_commitment() . '","' . 
-                // $person->get_motivation() . '","' . 
-                // $person->get_specialties() . '","' . 
-                // $person->get_convictions() . '","' . 
-                // implode(',', $person->get_type()) . '","' .
-                // $person->get_screening_type() . '","' .
-                // implode(',', $person->get_screening_status()) . '","' .
-                // $person->get_status() . '","' .
-                // implode(',', $person->get_availability()) . '","' .
-                // implode(',', $person->get_schedule()) . '","' .
-                // implode(',', $person->get_hours()) . '","' .
-                // $person->get_notes() . '","' .
                 $person->get_password() .
                 '");');							
         mysqli_close($con);
@@ -133,30 +107,6 @@ function change_password($id, $newPass) {
     return $result;
 }
 
-// function update_hours($id, $new_hours) {
-//     $con=connect();
-//     $query = 'UPDATE dbPersons SET hours = "' . $new_hours . '" WHERE id = "' . $id . '"';
-//     $result = mysqli_query($con,$query);
-//     mysqli_close($con);
-//     return $result;
-// }
-
-// function update_birthday($id, $new_birthday) {
-// 	$con=connect();
-// 	$query = 'UPDATE dbPersons SET birthday = "' . $new_birthday . '" WHERE id = "' . $id . '"';
-// 	$result = mysqli_query($con,$query);
-// 	mysqli_close($con);
-// 	return $result;
-// }
-
-// function update_start_date($id, $new_start_date) {
-// 	$con=connect();
-// 	$query = 'UPDATE dbPersons SET start_date = "' . $new_start_date . '" WHERE id = "' . $id . '"';
-// 	$result = mysqli_query($con,$query);
-// 	mysqli_close($con);
-// 	return $result;
-// }
-
 /*
  * @return all rows from dbPersons table ordered by last name
  * if none there, return false
@@ -200,42 +150,12 @@ function getall_volunteer_names() {
 }
 
 function make_a_person($result_row) {
-	/*
-	 ($f, $l, $v, $a, $c, $s, $z, $p1, $p1t, $p2, $p2t, $e, $t, 
-    		$screening_type, $screening_status, $st, $emp, $pos, $hours, $comm, $mot, $spe, 
-    		$convictions, $av, $sch, $hrs, $bd, $sd, $hdyh, $notes, $pass)
-	 */
+
     $thePerson = new Person(
                     $result_row['first_name'],
                     $result_row['last_name'],
-                    // $result_row['venue'],
-                    // $result_row['address'],
-                    // $result_row['city'],
-                    // $result_row['state'],
-                    // $result_row['zip'],
                     $result_row['phone'], // PHONE WAS CAUSING ODD LOGING ISSUES
-                    // $result_row['phone1type'],
-                    // $result_row['phone2'],
-                    // $result_row['phone2type'],
                     $result_row['email'],
-                    // $result_row['type'],
-                    // $result_row['screening_type'],
-                    // $result_row['screening_status'],
-                    // $result_row['status'],
-                    // $result_row['employer'],  
-                    // $result_row['position'],
-                    // $result_row['hours'],
-                    // $result_row['commitment'],
-                    // $result_row['motivation'],
-                    // $result_row['specialties'],
-                    // $result_row['convictions'],
-                    // $result_row['availability'],
-                    // $result_row['schedule'],
-                    // $result_row['hours'],
-                    // $result_row['birthday'],
-                    // $result_row['start_date'],
-                    // $result_row['howdidyouhear'],
-                    // $result_row['notes'],
                     $result_row['password']);   
     return $thePerson;
 }
@@ -248,56 +168,6 @@ function getall_names() {
     return $result;
 }
 
-/*
- * @return all active people of type $t or subs from dbPersons table ordered by last name
- */
-
-// function getall_type($t) {
-//     $con=connect();
-//     $query = "SELECT * FROM dbPersons WHERE (type LIKE '%" . $t . "%' OR type LIKE '%sub%') AND status = 'active'  ORDER BY last_name,first_name";
-//     $result = mysqli_query($con,$query);
-//     if ($result == null || mysqli_num_rows($result) == 0) {
-//         mysqli_close($con);
-//         return false;
-//     }
-//     mysqli_close;
-//     return $result;
-// }
-
-/*
- *   get all active volunteers and subs of $type who are available for the given $frequency,$week,$day,and $shift
- */
-
-// function getall_available($type, $day, $shift, $venue) {
-//     $con=connect();
-//     $query = "SELECT * FROM dbPersons WHERE (type LIKE '%" . $type . "%' OR type LIKE '%sub%')" .
-//             " AND availability LIKE '%" . $day .":". $shift .
-//             "%' AND status = 'active' AND venue = '" . $venue . "' ORDER BY last_name,first_name";
-//     $result = mysqli_query($con,$query);
-//     mysqli_close($con);
-//     return $result;
-// }
-
-
-// retrieve only those persons that match the criteria given in the arguments
-// function getonlythose_dbPersons($type, $status, $name, $day, $shift, $venue) {
-//    $con=connect();
-//    $query = "SELECT * FROM dbPersons WHERE type LIKE '%" . $type . "%'" .
-//            " AND status LIKE '%" . $status . "%'" .
-//            " AND (first_name LIKE '%" . $name . "%' OR last_name LIKE '%" . $name . "%')" .
-//            " AND availability LIKE '%" . $day . "%'" . 
-//            " AND availability LIKE '%" . $shift . "%'" . 
-//            " AND venue = '" . $venue . "'" . 
-//            " ORDER BY last_name,first_name";
-//    $result = mysqli_query($con,$query);
-//    $thePersons = array();
-//    while ($result_row = mysqli_fetch_assoc($result)) {
-//        $thePerson = make_a_person($result_row);
-//        $thePersons[] = $thePerson;
-//    }
-//    mysqli_close($con);
-//    return $thePersons;
-// }
 
 function phone_edit($phone) {
     if ($phone!="")
@@ -311,18 +181,6 @@ function get_people_for_export($attr, $first_name, $last_name, $phone, $email) {
 	$phone = "'".$phone."'";
 	$email = "'".$email."'";
 	$select_all_query = "'.'";
-	//if ($start_date == $select_all_query) $start_date = $start_date." or start_date=''";
-	//if ($email == $select_all_query) $email = $email." or email=''";
-    
-	// $type_query = "";
-    // if (!isset($type) || count($type) == 0) $type_query = "'.'";
-    // else {
-    // 	$type_query = implode("|", $type);
-    // 	$type_query = "'.*($type_query).*'";
-    // }
-    
-    // error_log("query for start date is ". $start_date);
-    // error_log("query for type is ". $type_query);
     
    	$con=connect();
     $query = "SELECT ". $attr ." FROM dbPersons WHERE 
@@ -337,46 +195,4 @@ function get_people_for_export($attr, $first_name, $last_name, $phone, $email) {
 
 }
 
-//return an array of "last_name:first_name:birth_date", and sorted by month and day
-// function get_birthdays($name_from, $name_to, $venue) {
-// 	$con=connect();
-//    	$query = "SELECT * FROM dbPersons WHERE availability LIKE '%" . $venue . "%'" . 
-//    	$query.= " AND last_name BETWEEN '" .$name_from. "' AND '" .$name_to. "'";
-//     $query.= " ORDER BY birthday";
-// 	$result = mysqli_query($con,$query);
-// 	$thePersons = array();
-// 	while ($result_row = mysqli_fetch_assoc($result)) {
-//     	$thePerson = make_a_person($result_row);
-//         $thePersons[] = $thePerson;
-// 	}
-//    	mysqli_close($con);
-//    	return $thePersons;
-// }
-
-//return an array of "last_name;first_name;hours", which is "last_name;first_name;date:start_time-end_time:venue:totalhours"
-// and sorted alphabetically
-// function get_logged_hours($from, $to, $name_from, $name_to, $venue) {
-// 	$con=connect();
-//    	$query = "SELECT first_name,last_name,hours,venue FROM dbPersons "; 
-//    	$query.= " WHERE venue = '" .$venue. "'";
-//    	$query.= " AND last_name BETWEEN '" .$name_from. "' AND '" .$name_to. "'";
-//    	$query.= " ORDER BY last_name,first_name";
-// 	$result = mysqli_query($con,$query);
-// 	$thePersons = array();
-// 	while ($result_row = mysqli_fetch_assoc($result)) {
-// 		if ($result_row['hours']!="") {
-// 			$shifts = explode(',',$result_row['hours']);
-// 			$goodshifts = array();
-// 			foreach ($shifts as $shift) 
-// 			    if (($from == "" || substr($shift,0,8) >= $from) && ($to =="" || substr($shift,0,8) <= $to))
-// 			    	$goodshifts[] = $shift;
-// 			if (count($goodshifts)>0) {
-// 				$newshifts = implode(",",$goodshifts);
-// 				array_push($thePersons,$result_row['last_name'].";".$result_row['first_name'].";".$newshifts);
-// 			}   // we've just selected those shifts that follow within a date range for the given venue
-// 		}
-// 	}
-//    	mysqli_close($con);
-//    	return $thePersons;
-// }
 ?>
