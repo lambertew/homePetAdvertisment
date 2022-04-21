@@ -14,7 +14,7 @@
 </style>
 <div id="header">
 <!--<br><br><img src="images/rmhHeader.gif" align="center"><br>
-<h1><br><br>Homebase <br></h1>-->
+<h1><br><br>SPCA <br></h1>-->
 
 </div>
 
@@ -78,22 +78,21 @@
         // else {
         	echo " <br><b>"."SPCA"."</b> ";
 	        if ($_SESSION['access_level'] == 0) {
-	            echo('<a href="' . $path . 'index.php">home</a>');
-	            echo(' | <a href="' . $path . 'about.php">about</a>');
-	            echo(' | <a href="' . $path . 'help.php?helpPage=' . $current_page . '" target="_BLANK">help</a>');
+	            echo('<a href="' . $path . 'index.php">Home</a>');
+	            echo(' | <a href="' . $path . 'about.php">About</a>');
                 echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
                 echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
-	            echo(' | <a href="' . $path . 'login_form.php">login</a>');
+	            echo(' | <a href="' . $path . 'login_form.php">Login</a>');
 	        } else {
-	        	echo('<a href="' . $path . 'index.php">home</a>');
-	        	echo(' | <a href="' . $path . 'about.php">about</a>');
+	        	echo('<a href="' . $path . 'index.php">Home</a>');
+	        	echo(' | <a href="' . $path . 'about.php">About</a>');
                 echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
 	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
 	            echo(' | <a href="' . $path . 'editUserInfo.php">Edit User Information</a>');
 	            echo(' | <a href="' . $path . 'personEdit.php?id=' . 'new' . '">Create New Admin</a>');
                 echo(' | <a href="' . $path . 'resetAuth.php">Reset Password</a>');
 	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
-	            echo(' | <a href="' . $path . 'logout.php">logout</a><br>');
+	            echo(' | <a href="' . $path . 'logout.php">Logout</a><br>');
 	        }
         // }
     //}

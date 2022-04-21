@@ -64,6 +64,4 @@ function create_adopter ($result_row) {
         $result_row['email']);
     return $adopter;
 }
-
-
 ?>
