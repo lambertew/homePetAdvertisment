@@ -42,14 +42,14 @@ session_cache_expire(30);
                 echo "   Today is " . date('l F j, Y') . ".<p>";
                 
                 $pet = new_highlights();
-                echo $pet[0]->get_pet_name();
-                echo $pet[1]->get_pet_name();
-                echo $pet[2]->get_pet_name();   
+                #echo $pet[0]->get_pet_name();
+                #echo $pet[1]->get_pet_name();
+                #echo $pet[2]->get_pet_name();   
                 echo showSlides();
 
                 $ppID = $pet[0]->get_id();
                 $r = update_highlights($ppID);
-                echo $r;
+                #echo $r;
                 ?>
 
             </div>
