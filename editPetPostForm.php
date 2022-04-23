@@ -51,6 +51,7 @@ $adopter = retrieve_adopter_by_id($petPost->get_owner_id());
                  */
                 function process_form($petPost,$adopter) {
                     $target_file = $petPost->get_pet_picture();
+                    $upload = 1;
                     if (is_uploaded_file($_FILES['choosefile']['tmp_name'])) {
                         $target_dir = "images/";
                         $target_file = $target_dir . basename($_FILES["choosefile"]["name"]);
@@ -58,19 +59,22 @@ $adopter = retrieve_adopter_by_id($petPost->get_owner_id());
                         
                         if ($_FILES["fileToUpload"]["size"] > 500000) {
                             echo "File is too large.<br>";
+                            $upload = 0;
                         }
                         
-                        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && imageFileType != "gif") {
+                        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
                             echo "Wrong file type. Please upload JPG, JPEG, or PNG.<br>";
+                            $upload = 0;
                         }
                         
-                        if (move_uploaded_file($_FILES["choosefile"]["tmp_name"], $target_file)) {
+                        if ($upload == 1) {
+                            move_uploaded_file($_FILES["choosefile"]["tmp_name"], $target_file);
                             echo "The file ". htmlspecialchars(basename($_FILES["choosefile"]["name"])). " has been uploaded.<br>";
                         } else {
                             echo "The file ". htmlspecialchars(basename($_FILES["choosefile"]["name"])). " could not be uploaded.<br>";
                         }
                     }
-                   
+                    
                     $owner_name = $_POST["name"];
                     $phone = $_POST["phone"];
                     $email = $_POST["email"];
@@ -82,17 +86,19 @@ $adopter = retrieve_adopter_by_id($petPost->get_owner_id());
                     $pet_story = $_POST["pet_story"];
                     $pet_picture = $target_file;
                     
-                    $adopter->set_name($owner_name);
-                    $adopter->set_phone($phone);
-                    $adopter->set_email($email);
-                    $petPost->set_pet_name($pet_name);
-                    $petPost->set_pet_type($pet_type);
-                    $petPost->set_pet_story($pet_story);
-                    $petPost->set_pet_picture($pet_picture);
+                    if ($upload != 0) {
+                        $adopter->set_name($owner_name);
+                        $adopter->set_phone($phone);
+                        $adopter->set_email($email);
+                        $petPost->set_pet_name($pet_name);
+                        $petPost->set_pet_type($pet_type);
+                        $petPost->set_pet_story($pet_story);
+                        $petPost->set_pet_picture($pet_picture);
+                    }
                     
                     $adopter_result = edit_user_info($adopter);
                     $petpost_result = edit_petpost($petPost);
-                    if(!$petpost_result || !$adopter_result) {
+                    if(!$petpost_result || !$adopter_result || !$upload) {
                         echo "Pet Post could not be updated.";
                     } else {
                         echo "Pet Post successfully updated.";
