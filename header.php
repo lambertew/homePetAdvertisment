@@ -33,19 +33,18 @@
         //pages guests are allowed to view
         $permission_array['index.php'] = 0;
         $permission_array['about.php'] = 0;
-        $permission_array['apply.php'] = 0;
         $permission_array['petpostform.php'] = 0;
+        $permission_array['searchPetPost.php'] = 0;
+        $permission_array['login_form.php'] = 0;
         //pages volunteers can view
-        $permission_array['help.php'] = 0;
-        $permission_array['calendar.php'] = 0;
         //pages only managers can view
         $permission_array['personsearch.php'] = 2;
         $permission_array['personedit.php'] = 2;
-        $permission_array['viewschedule.php'] = 2;
-        $permission_array['addweek.php'] = 2;
-        $permission_array['log.php'] = 2;
-        $permission_array['reports.php'] = 2;
         $permission_array['resetPassword.php'] = 2;
+        $permission_array['editUserInfo.php'] = 2;
+        $permission_array['editPetPostForm.php'] = 2;
+        $permission_array['approveSubmissions.php'] = 2;
+        $permission_array['logout.php'] = 2;
 
         //Check if they're at a valid page for their access level.
         $current_page = strtolower(substr($_SERVER['PHP_SELF'], strpos($_SERVER['PHP_SELF'],"/")+1));
@@ -62,11 +61,11 @@
         //This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
+	    #echo '<img style="position:relative;" src="images/dpg.png" width="auto"; height = "200"; margin = "5; /></br>';
     	echo " <br><b>"."SPCA"."</b> ";
-    	echo '<br><img src="images/emma.jpg" width="auto"; height = "500"; margin = "5; />';
         if ($_SESSION['access_level'] == 0) {
-            echo('<a href="' . $path . 'index.php">home</a> ');
-            echo(' | <a href="' . $path . 'about.php">about</a>');
+            echo('<a href="' . $path . 'index.php">Home</a> ');
+            echo(' | <a href="' . $path . 'about.php">About</a>');
             echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
             echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
             echo(' | <a href="' . $path . 'login_form.php">Login</a>');

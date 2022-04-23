@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 echo('<p><strong>Edit Pet Post Form</strong><br />');
 echo('Fill in the fields that you want to edit' .
