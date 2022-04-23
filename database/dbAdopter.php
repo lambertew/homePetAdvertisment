@@ -103,4 +103,5 @@ function next_owner_id() {
         return $the_id;
     }
 }
+
 ?>

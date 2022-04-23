@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 /*
  * Copyright 2013 by ... and Allen Tucker. 

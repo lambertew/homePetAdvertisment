@@ -23,7 +23,7 @@ session_cache_expire(30);
     <body>
         <div id="container">
             <?PHP include('header.php'); ?>
-            <div id="content">
+        <div id="content">
                 <?PHP
                 include_once('database/dbPersons.php');
                 include_once('domain/Person.php');
@@ -41,15 +41,22 @@ session_cache_expire(30);
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
                 
+<<<<<<< HEAD
                 $pet = new_highlights();
                 #echo $pet[0]->get_pet_name();
                 #echo $pet[1]->get_pet_name();
                 #echo $pet[2]->get_pet_name();   
+=======
+                $pet = new_highlights();  
+>>>>>>> branch 'main' of https://github.com/PaulNarkinsky/homePetAdvertisement
                 echo showSlides();
 
                 $ppID = $pet[0]->get_id();
                 $r = update_highlights($ppID);
+<<<<<<< HEAD
                 #echo $r;
+=======
+>>>>>>> branch 'main' of https://github.com/PaulNarkinsky/homePetAdvertisement
                 ?>
 
             </div>

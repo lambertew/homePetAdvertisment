@@ -62,25 +62,25 @@
         //This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
-        
-        	echo " <br><b>"."SPCA"."</b> ";
-	        if ($_SESSION['access_level'] == 0) {
-	            echo('<a href="' . $path . 'index.php">Home</a>');
-	            echo(' | <a href="' . $path . 'about.php">About</a>');
-                echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
-                echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
-	            echo(' | <a href="' . $path . 'login_form.php">Login</a>');
-	        } else {
-	        	echo('<a href="' . $path . 'index.php">Home</a>');
-	        	echo(' | <a href="' . $path . 'about.php">About</a>');
-                echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
-	            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
-	            echo(' | <a href="' . $path . 'editUserInfo.php">Edit User Information</a>');
-	            echo(' | <a href="' . $path . 'personEdit.php?id=' . 'new' . '">Create New Admin</a>');
-                echo(' | <a href="' . $path . 'resetAuth.php">Reset Password</a>');
-	            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
-	            echo(' | <a href="' . $path . 'logout.php">Logout</a><br>');
-	        }
+    	echo " <br><b>"."SPCA"."</b> ";
+    	echo '<br><img src="images/emma.jpg" width="auto"; height = "500"; margin = "5; />';
+        if ($_SESSION['access_level'] == 0) {
+            echo('<a href="' . $path . 'index.php">home</a> ');
+            echo(' | <a href="' . $path . 'about.php">about</a>');
+            echo(' | <a href="' . $path . 'emailAuth.php">Create Pet Post</a>');
+            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
+            echo(' | <a href="' . $path . 'login_form.php">Login</a>');
+        } else {
+        	echo('<a href="' . $path . 'index.php">Home</a>');
+        	echo(' | <a href="' . $path . 'about.php">About</a>');
+            echo(' | <a href="' . $path . 'petPostForm.php">Create Pet Post</a>');
+            echo(' | <a href="' . $path . 'searchPetPost.php">Search Pet Posts</a>');
+            echo(' | <a href="' . $path . 'editUserInfo.php">Edit User Information</a>');
+            echo(' | <a href="' . $path . 'personEdit.php?id=' . 'new' . '">Create New Admin</a>');
+            echo(' | <a href="' . $path . 'resetAuth.php">Reset Password</a>');
+            echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
+            echo(' | <a href="' . $path . 'logout.php">Logout</a><br>');
+        }
 ?>
 </div>
 <!-- End Header -->

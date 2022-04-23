@@ -81,5 +81,5 @@ INSERT INTO `dbPetPost` (`id`,`owner_id`, `petName`, `petType`, `petStory`, `pet
 ('0', '1', 'Emma', 'Dog', 'Gigantic stinker terrorizes every nearby entity', 'images/emma.jpg', 0, 0),
 ('1', '0', 'Bagel', 'Cat', 'Nova scotian badass', 'images/bagel.jpg', 0, 0),
 ('2', '1', 'Ladybug', 'Dog', 'Scared of bikes and parked cars', 'images/ladybug02.jpg', 0, 0),
-('3', '2', 'Charles', 'Other', 'Where are his teeth', 'images/charles03.jpg', 0, 0),
+('3', '2', 'Charles', 'Other', 'Where are his teeth?', 'images/charles03.jpg', 0, 0),
 ('4', '2', 'Gimli', 'Other', 'Who?', 'images/gimli04.jpg', 0, 0);
