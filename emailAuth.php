@@ -47,9 +47,11 @@ include_once('domain/Person.php');
                     }
                     // this was a successful form submission; update the database and exit
                     else
+                    {
                         send_email($_POST['email']);
                         //echo "</div>";
                         include("verificationCodeForm.inc");
+                    }
                     include('footer.inc');
                     echo('</div></body></html>');
                     die();

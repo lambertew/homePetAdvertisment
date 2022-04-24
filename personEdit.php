@@ -20,7 +20,7 @@ include_once('domain/ApplicantScreening.php');
 $id = str_replace("_"," ",$_GET["id"]);
 
 if ($id == 'new') {
-    $person = new Person('new', 'applicant', null, null, "");
+    $person = new Person('new', 'admin', null, null, "");
 } else {
     $person = retrieve_person($id);
     if (!$person) { // try again by changing blanks to _ in id
@@ -141,7 +141,7 @@ if ($id == 'new') {
 
                     // try to add a new person to the database
                     else if ($_POST['old_id'] == 'new') {
-                        $id = $first_name . $clean_phone1;
+                        $id = $first_name . $clean_phone;
                         //check if there's already an entry
                         $dup = retrieve_person($id);
                         if ($dup)
