@@ -29,7 +29,7 @@ function petPostTemplate( $pet, $postDesc ){
     <div class="mySlides fade">
       <fieldset>
         <legend>'.$postDesc.'</legend>
-          <table height="auto" width="600" style="margin-left:auto; margin-right:auto">
+          <table height="auto" width="auto" style="margin-left:auto; margin-right:auto">
           <tr>
             <td rel="stylesheet" href="styles.css">
               <img src="'.$petpicture.'" width="auto"; height = "500"; margin = "auto"; />
@@ -38,14 +38,11 @@ function petPostTemplate( $pet, $postDesc ){
               <table>
                 <tr>
                   <td>
-                  '.$petname.', '.$pettype.'
+                    <h1 style="font-size: 40px;"> Pet Name: '.$petname.'</h1>
+                    <h2 style="font-size: 20px;"> Pet Type: '.$pettype.'</h2>
+                    <h2 style="font-size: 20px;"> Pet Story: </h2> 
+                    <p style="font-size: 20px;">'.$petstory.'</p>
                 </td>
-              </tr>
-                <tr>
-                  <td>
-                  '.$petstory.'
-                </td>
-              </tr>
               </table>
             </td>
           </tr>

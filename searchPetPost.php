@@ -4,6 +4,7 @@
     session_cache_expire(30);
     include_once('database/dbPetPost.php');
     include_once('domain/PetPost.php');
+		include ('petPost.php');
 ?>
 
 
@@ -37,14 +38,10 @@
 		          $petname = $petposts[$x]->get_pet_name();
 		          $petstory = $petposts[$x]->get_pet_story();
 		          $petpicture = $petposts[$x]->get_pet_picture();
+							$result_string = "Pet ";
+							$result_string .= $x + 1;
 		          if ($approval == 1) {?>
-		          	<fieldset style="text-align:center";>
-		          		<legend><b><?php echo $petname ?></b></legend>
-		          		<div style="display:inline-block; margin:auto;">
-		          			<br><img src="<?php echo htmlspecialchars($petpicture); ?>" alt="test" width="200" height="200"/>
-		            		<p style="text-align:center";><?php echo $petstory?></p>
-		          		</div>
-		          	</fieldset>
+								<?php petPostTemplate($petposts[$x], $result_string); ?>
 		          <?php
 		          } else {
 		              continue;
