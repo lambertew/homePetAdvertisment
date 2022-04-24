@@ -64,7 +64,7 @@
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
         
         	// echo '<br><h1><img src="images/emma.jpg" width="auto"; height = "500"; margin = "5; />';
-            echo '<br><h1>SPCA</h1>';
+            echo '<br><h1 style="color:#659DBD;">SPCA</h1>';
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">home</a> ');
 	            echo(' | <a href="' . $path . 'about.php">about</a>');
