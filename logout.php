@@ -25,7 +25,7 @@ session_cache_expire(30);
     <head>
         <meta HTTP-EQUIV="REFRESH" content="1; url=index.php">
         <title>
-            Logged out of RMH Homebase
+            Logging out of SPCA
         </title>
         <link rel="stylesheet" href="styles.css" type="text/css" />
     </head>
@@ -43,7 +43,6 @@ session_cache_expire(30);
                 ?>
                 <p>You are now logged out of SPCA.</p>
             </div>
-            <?PHP include('footer.inc'); ?>
         </div>
     </body>
 </html>
