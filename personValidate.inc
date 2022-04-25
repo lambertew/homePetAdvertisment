@@ -19,7 +19,7 @@
 function validate_form($person) {
     if ($person->get_first_name()=="new" && ($_POST['first_name'] == NULL || $_POST['first_name'] == 'new'))
         $errors[] = 'Please enter a first name';
-    if ($_POST['last_name'] == null)
+    if ($_POST['last_name'] == null || $_POST['last_name'] == 'admin')
         $errors[] = 'Please enter a last name';
     if ($person->get_phone()==null && !valid_phone($_POST['phone']))
         $errors[] = 'Enter a valid primary phone number (10 digits: ### ### ####)';

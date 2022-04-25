@@ -61,6 +61,7 @@
         //This line gives us the path to the html pages in question, useful if the server isn't installed @ root.
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
+
 	    #echo '<img style="position:relative;" src="images/dpg.png" width="auto"; height = "200"; margin = "5; /></br>';
     	echo " <br><b>"."SPCA"."</b> ";
         if ($_SESSION['access_level'] == 0) {
@@ -80,6 +81,7 @@
             echo(' | <a href="' . $path . 'approveSubmissions.php">Approve Submissions</a>');
             echo(' | <a href="' . $path . 'logout.php">Logout</a><br>');
         }
+
 ?>
 </div>
 <!-- End Header -->
