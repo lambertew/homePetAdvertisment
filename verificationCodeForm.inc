@@ -1,7 +1,6 @@
 <?php
 echo('<p><strong>Verification Code Form</strong><br />');
-echo('Testing Verification Code. ' .
-'<br>When finished, hit <b>Submit</b> at the bottom of this page.');
+echo('When finished, hit <b>Submit</b> at the bottom of this page.');
 ?>
 <form method="POST">
     <input type="hidden" name="_form_submit" value="1">
