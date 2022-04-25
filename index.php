@@ -11,7 +11,7 @@ session_cache_expire(30);
 <html>
     <head>
         <title>
-            SPCA
+            Home Pet Advertisement
         </title>
         <link rel="stylesheet" href="styles.css" type="text/css" />
         <style>

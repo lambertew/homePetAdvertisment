@@ -35,39 +35,88 @@ include_once('domain/Person.php');
                     include('resetAuthForm.inc');
                 else if (($_POST['_form_submit'] == 1) && ($_POST['_form_submit_2'] != 1))
                 {
-                    $con=connect();
-                    $query = "SELECT * FROM dbpersons WHERE email = '" . $_POST['resetEmail'] . "' AND id = '" . $_POST['resetID'] . "'";
-                    //$query = "SELECT * FROM dbpersons WHERE email='weisbeckjacob@gmail.com' AND id='Jacob5404985629'" ;
-                    $result = mysqli_query($con,$query);
-                    mysqli_close($con);
-                    //in this case, the form has been submitted, so validate it
-                    $errors = valid_email($_POST['resetEmail']);  //step one is validation.
-                    // errors array lists problems on the form submitted
-                    if (!$errors || !$result) {
-                        // display the errors and the form to fix
-                        echo('<div class="warning">');
-                        echo('<ul>');
-                        if (!$errors)
+                    // $con=connect();
+                    // $query = "SELECT * FROM dbpersons WHERE email = '" . $_POST['resetEmail'] . "' AND id = '" . $_POST['resetID'] . "'";
+                    // //$query = "SELECT * FROM dbpersons WHERE email='weisbeckjacob@gmail.com' AND id='Jacob5404985629'" ;
+                    // $result = mysqli_query($con,$query);
+                    // mysqli_close($con);
+                    // //in this case, the form has been submitted, so validate it
+                    // $errors = valid_email($_POST['resetEmail']);  //step one is validation.
+                    // // errors array lists problems on the form submitted
+                    // if (!$errors || !$result) {
+                    //     // display the errors and the form to fix
+                    //     echo('<div class="warning">');
+                    //     echo('<ul>');
+                    //     if (!$errors)
+                    //     {
+                    //         echo("<li><strong><font color=\"red\">Malformed Email!</font></strong></li>\n");
+                    //         echo("</ul></div></p>");
+                    //     }
+                    //     else if (!$result)
+                    //     {
+                    //         echo("<li><strong><font color=\"red\">" . $result . "</font></strong></li>\n");
+                    //         echo("</ul></div></p>");
+                    //     }
+                    //     include('resetAuthForm.inc');
+                    //     //echo("</ul></div></p>");
+                    // }
+
+                    $errors = validate_submission($_POST['resetID'], $_POST['resetEmail']);
+                    if (!$errors)
+                    {
+                        $checkEmail = valid_email($_POST['resetEmail']);
+                        if ($checkEmail)
                         {
+                            $person = retrieve_person($_POST['resetID']);
+                            if (!$person)
+                            {
+                                echo('<div class="warning">');
+                                echo('<ul>');
+                                echo("<li><strong><font color=\"red\">No matching ID and Email combo in database</font></strong></li>\n");
+                                echo("</ul></div></p>");
+                                include('resetAuthForm.inc');
+                            }
+                            else
+                            {
+                                $m = $person->get_email();
+                                if ($m == $_POST['resetEmail'])
+                                {
+                                    send_email($_POST['resetEmail']);
+                                    //echo "</div>";
+                                    include("verificationCodeForm.inc");
+                                }
+                                else
+                                {
+                                    echo('<div class="warning">');
+                                    echo('<ul>');
+                                    echo("<li><strong><font color=\"red\">No matching ID and Email combo in database</font></strong></li>\n");
+                                    echo("</ul></div></p>");
+                                    include('resetAuthForm.inc');
+                                }
+                            }
+                        }
+                        else
+                        {
+                            echo('<div class="warning">');
+                            echo('<ul>');
                             echo("<li><strong><font color=\"red\">Malformed Email!</font></strong></li>\n");
                             echo("</ul></div></p>");
+                            include('resetAuthForm.inc');
                         }
-                        else if (!$result)
-                        {
-                            echo("<li><strong><font color=\"red\">" . $result . "</font></strong></li>\n");
-                            echo("</ul></div></p>");
-                        }
-                        include('resetAuthForm.inc');
-                        //echo("</ul></div></p>");
                     }
-                    // this was a successful form submission; update the database and exit
                     else
                     {
-                        send_email($_POST['resetEmail']);
-                        //echo "</div>";
-                        include("verificationCodeForm.inc");
+                        show_errors($errors);
+                        include('resetAuthForm.inc');
                     }
-                    include('footer.inc');
+                    // this was a successful form submission; update the database and exit
+                    // else
+                    // {
+                    //     send_email($_POST['resetEmail']);
+                    //     //echo "</div>";
+                    //     include("verificationCodeForm.inc");
+                    // }
+                    //include('footer.inc');
                     echo('</div></body></html>');
                     die();
                 }
@@ -135,6 +184,19 @@ include_once('domain/Person.php');
                         return true;
                     }
                     return false;
+                }
+
+                function validate_submission($resetID, $resetEmail)
+                {
+                    if (!$resetID)
+                    {
+                        $errors[] = "Please enter an ID";
+                    }
+                    if (!$resetEmail)
+                    {
+                        $errors[] = "Please enter an email";
+                    }
+                    return $errors;
                 }
                 ?>
             </div>
