@@ -63,7 +63,8 @@
         $path = strrev(substr(strrev($_SERVER['SCRIPT_NAME']), strpos(strrev($_SERVER['SCRIPT_NAME']), '/')));
 		$venues = array("portland"=>"RMH Portland","bangor"=>"RMH Bangor");
         
-        	//echo '<br><img src="images/emma.jpg" width="auto"; height = "500"; margin = "5; />';
+        	// echo '<br><h1><img src="images/emma.jpg" width="auto"; height = "500"; margin = "5; />';
+            echo '<br><h1>SPCA</h1>';
 	        if ($_SESSION['access_level'] == 0) {
 	            echo('<a href="' . $path . 'index.php">home</a>');
 	            echo(' | <a href="' . $path . 'about.php">about</a>');
