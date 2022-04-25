@@ -118,7 +118,6 @@ session_cache_expire(30);
                 <!-- below is the footer that we're using currently-->
                 </div>
         </div>
-        <?PHP include('footer.inc'); ?>
     </body>
 </html>
 

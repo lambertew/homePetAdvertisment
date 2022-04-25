@@ -43,6 +43,5 @@ include_once('domain/PetPost.php');
                 }
             }?>
          </div>
-      <?PHP include('footer.inc'); ?>
     </div>
 </body>

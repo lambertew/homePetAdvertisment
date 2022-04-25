@@ -32,11 +32,10 @@
         $_SESSION['access_level'] = 0;
     }
     if (!array_key_exists('_submit_check', $_POST)) {
-        echo('<div align="left"><p>Access to Homebase requires a Username and a Password. ' .
+        echo('<div align="left"><p>Administrative access to SPCA requires a Username and a Password. ' .
         '<ul>'
         );
-        echo('<li>If you are an admin logging in for the first time, your Username is your first name followed by your ten digit phone number. ' .
-        'After you have logged in, you can change your password.  ');
+        echo '</ul>';
         echo('<p><table><form method="post"><input type="hidden" name="_submit_check" value="true"><tr><td>Username:</td>
         		<td><input type="text" name="user" tabindex="1"></td></tr>
         		<tr><td>Password:</td><td><input type="password" name="pass" tabindex="2"></td></tr><tr><td colspan="2" align="center"><input type="submit" name="Login" value="Login"></td></tr></table>');
@@ -57,24 +56,17 @@
                     echo "<script type=\"text/javascript\">window.location = \"index.php\";</script>";
                 }
                 else {
-                    echo('<div align="left"><p class="error">Error: invalid username/password<br />if you cannot remember your password, ask another admin to reset it for you.</p><p>Access to Homebase requires a Username and a Password.');
-                    echo('<p>If you are a volunteer, your Username is your first name followed by your phone number with no spaces. ' .
-                    'For instance, if your first name were John and your phone number were (207)-123-4567, ' .
-                    'then your Username would be <strong>John2071234567</strong>.  ');
+                    echo('<div align="left"><p class="error">Error: invalid username/password<br />if you cannot remember your password, ask another admin to reset it for you.</p>');
                     echo('<p><table><form method="post"><input type="hidden" name="_submit_check" value="true"><tr><td>Username:</td><td><input type="text" name="user" tabindex="1"></td></tr><tr><td>Password:</td><td><input type="password" name="pass" tabindex="2"></td></tr><tr><td colspan="2" align="center"><input type="submit" name="Login" value="Login"></td></tr></table>');
                 }
             } else {
                 //At this point, they failed to authenticate
-                echo('<div align="left"><p class="error">Error: invalid username/password<br />if you cannot remember your password, ask another admin for help.</p><p>Access to Homebase requires a Username and a Password.');
-                echo('<p>If you are a volunteer, your Username is your first name followed by your phone number with no spaces. ' .
-                'For instance, if your first name were John and your phone number were (207)-123-4567, ' .
-                'then your Username would be <strong>John2071234567</strong>.  ');
+                echo('<div align="left"><p class="error">Error: invalid username/password<br />');
                 echo('If you do not remember your password, please contact an admin user!');
                 echo('<p><table><form method="post"><input type="hidden" name="_submit_check" value="true"><tr><td>Username:</td><td><input type="text" name="user" tabindex="1"></td></tr><tr><td>Password:</td><td><input type="password" name="pass" tabindex="2"></td></tr><tr><td colspan="2" align="center"><input type="submit" name="Login" value="Login"></td></tr></table>');
             }
         }
     }
     ?>
-    <?PHP include('footer.inc'); ?>
 </div>
 </div>
