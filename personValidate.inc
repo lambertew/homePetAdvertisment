@@ -48,6 +48,38 @@ function validate_reset($person) {
     return $errors;
 }
 
+function validate_petpost() {
+    if($_POST['name'] == null)
+    {
+        $errors[] = "Name field cannot be empty";
+    }
+    if($_POST['phone'] == null)
+    {
+        $errors[] = "Phone Number field cannot be empty";
+    }
+    if($_POST['email'] == null)
+    {
+        $errors[] = "Email Address field cannot be empty";
+    }
+    if($_POST['petName'] == null)
+    {
+        $errors[] = "Pet Name field cannot be empty";
+    }
+    if($_POST['petType'] == null)
+    {
+        $errors[] = "Pet Type field cannot be empty";
+    }
+    if($_POST['petStory'] == null)
+    {
+        $errors[] = "Pet Story field cannot be empty";
+    }
+    //if($_POST['petPicture'] == null)
+    //{
+        //$errors[] = "Picture of Pet field cannot be empty";
+    //}
+    return $errors;
+}
+
 /**
  * valid_phone validates a phone on the following parameters:
  * 		it assumes the characters '-' ' ' '+' '(' and ')' are valid, but ignores them
