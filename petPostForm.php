@@ -52,8 +52,6 @@ $petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
                         show_errors($errors);
                         include('petPostForm.inc');
                     } else {
-                        echo "Inside else statement.<br>";
-                        //$target_file = $petPost->get_pet_picture();
                         $upload = 1;
                     if (is_uploaded_file($_FILES['choosefile']['tmp_name'])) {
                         $target_dir = "images/";
@@ -102,6 +100,7 @@ $petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
                     	   $newerpetpost = new PetPost($postid, $adopterid, $petName, $petType, $petStory, $petPicture, 0, 0);
                     	   edit_petpost($newerpetpost);
                         }
+                        echo "Pet Post has been submitted for approval.<br>";
                         //include('petPostForm.inc');
                         //echo($newpetpost->get_id());
                         //process_form($id,$petPost);
