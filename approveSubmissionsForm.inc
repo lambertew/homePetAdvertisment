@@ -1,7 +1,6 @@
 <?php
 echo('<p><strong>Pet Post Approval Form</strong><br />');
-echo('Testing Pet Post Approval ' .
-'<br>If everything looks good, hit <b>Approve</b> at the bottom of this page.' . 
+echo('If everything looks good, hit <b>Approve</b> at the bottom of this page.' . 
 '<br>If somethings looks bad, hit <b>Deny</b> at the bottom of this page.');
 
 ?>

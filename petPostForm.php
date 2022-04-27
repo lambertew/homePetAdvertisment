@@ -144,7 +144,6 @@ $petpost = new PetPost(1001, 1001, null, null, null, null, 0, 0);
                 }
                 ?>
             </div>
-            <?PHP include('footer.inc'); ?>
         </div>
     </body>
 </html> 

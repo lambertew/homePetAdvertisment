@@ -52,5 +52,4 @@
 		?>
 	</div>
 </div>
-<?php include_once('footer.inc')?>
 </body>

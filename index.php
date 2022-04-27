@@ -11,7 +11,7 @@ session_cache_expire(30);
 <html>
     <head>
         <title>
-            RMH Homebase
+            Home Pet Advertisement
         </title>
         <link rel="stylesheet" href="styles.css" type="text/css" />
         <style>
@@ -23,7 +23,7 @@ session_cache_expire(30);
     <body>
         <div id="container">
             <?PHP include('header.php'); ?>
-        <div id="content">
+            <div id="content">
                 <?PHP
                 include_once('database/dbPersons.php');
                 include_once('domain/Person.php');
@@ -41,13 +41,16 @@ session_cache_expire(30);
                     echo "<p>Welcome!";
                 echo "   Today is " . date('l F j, Y') . ".<p>";
                 
-                $pet = new_highlights();  
+                $pet = new_highlights();
+                #echo $pet[0]->get_pet_name();
+                #echo $pet[1]->get_pet_name();
+                #echo $pet[2]->get_pet_name();   
                 echo showSlides();
 
                 $ppID = $pet[0]->get_id();
                 $r = update_highlights($ppID);
+                #echo $r;
                 ?>
-
             </div>
         </div>
     </body>
