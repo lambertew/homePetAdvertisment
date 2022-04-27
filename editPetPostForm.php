@@ -50,8 +50,8 @@ $adopter = retrieve_adopter_by_id($petPost->get_owner_id());
                  * process_form sanitizes data, concatenates needed data, and enters it all into a database
                  */
                 function process_form($petPost,$adopter) {
-                    $target_file = $petPost->get_pet_picture();
-                    if (is_uploaded_file($_FILES['choosefile']['tmp_name'])) {
+                    //$target_file = $petPost->get_pet_picture();
+                    //if (is_uploaded_file($_FILES['choosefile']['tmp_name'])) {
                         $target_dir = "images/";
                         $target_file = $target_dir . basename($_FILES["choosefile"]["name"]);
                         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -69,7 +69,7 @@ $adopter = retrieve_adopter_by_id($petPost->get_owner_id());
                         } else {
                             echo "The file ". htmlspecialchars(basename($_FILES["choosefile"]["name"])). " could not be uploaded.<br>";
                         }
-                    }
+                    //}
                    
                     $owner_name = $_POST["name"];
                     $phone = $_POST["phone"];
